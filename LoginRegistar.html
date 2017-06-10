@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uplace</title>
+	<meta name="description" content="Blueprint: A basic responsive product grid layout with comparison functionality" />
+	<meta name="keywords" content="blueprint, template, html, css, javascript, grid, layout, effect, product comparison" />
+	<meta name="author" content="Codrops" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<script src="js/modernizr.custom.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/landing-page.css" rel="stylesheet">
+	<link href="css/loginregistar.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="js/Button-Select.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+		<script src="js/loginregistar.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="js/navbarConfig.js"></script>
+  <script src="js/wishlistOther.js"></script>
+	<script src="js/sairAnalise.js"></script>
+</head>
+<body>
+
+		<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+		<div class="container topnav">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand topnav" href="index.html"><img src="./img/LOGO_NAV_TRANS_TEXT.png" /></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a id="indice" style="display:block" href="index.html">Uplace</a>
+					</li>
+					<li>
+						<a id="logbook" style="display:none" href="LogBook.html">Log Book</a>
+					</li>
+					<li>
+						<a id="adicionar" style="display:none" href="AdicionarImóvel.html">Adicionar Imóvel</a>
+					</li>
+					<li>
+						<a id="meus" style="display:none" href="MeusImoveis.html">Os Meus Imóveis</a>
+					</li>
+					<li>
+						<a id="aprovar" style="display:none" href="PaginaGestor.html">Aprovar Imóveis</a>
+					</li>
+					<li>
+
+						<a id="conta" style="display:none" href="Conta.html"  >Minha Conta</a>
+					</li>
+					<li>
+						<a id="logreg" style="display:bock" href="LoginRegistar.html" >Login/Registar</a>
+					</li>
+
+					<li>
+						<a id="logout" onclick="sair()" href="">Logout</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav><!--	http://eskipaper.com/images/lovely-city-wallpaper-1.jpg-->
+<div class="container-fluid">
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div id ="teste" class="row">
+							<div class="col-lg-12">
+								<form id="login-form" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="" name="login-submit" id="login-submit" onclick="acesso()"tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a tabindex="5" class="forgot-password">Forgot Password?</a><br /><br />
+													<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tipos">[Ajuda] Tipos de Logins</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+								<form id="register-form"role="form" style="display: none;">
+									<div class="form-group">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit"onclick="acesso()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
+					<!-- Modal -->
+				   <div class="modal fade" id="tipos" role="dialog">
+				     <div class="modal-dialog">
+				       <!-- Modal content-->
+				       <div class="modal-content">
+				         <div class="modal-header">
+				           <button type="button" class="close" data-dismiss="modal">&times;</button>
+				           <h4 class="modal-title">Tipos de Login</h4>
+				         </div>
+				         <div class="modal-body">
+				           <ul>
+				           <li> Utilizador default => 					username = default</li>
+				           <li> Proprietário => 								username = proprietário</li>
+				           <li> Gestor => 											username = gestor</li>
+				           <li> Equipa de análise financeira => username = analise</li>
+				           </ul>
+				         </div>
+				         <div class="modal-footer">
+				           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				         </div>
+				       </div>
+
+				     </div>
+				   </div>
+
+				 </div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+  </body>
