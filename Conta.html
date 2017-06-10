@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>UPlace - Imóveis</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+ <script src="js/navbarConfig.js"></script>
+ 	<script src="js/sairAnalise.js"></script>
+  <!-- Custom CSS -->
+  <link href="css/landing-page.css" rel="stylesheet">
+  <link href="css/Button-Select.css" rel="stylesheet">    <!-- Custom Fonts -->
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="js/wishlistOther.js"></script>
+<script >
+  var user= localStorage.flagUser;
+$( document ).ready(function() {
+  document.getElementById('contauser').innerHTML= localStorage.flagUser;
+
+  if (user=="default"){
+    document.getElementById("meusBotao").style.display="none";
+    document.getElementById("logBotao").style.display="block";
+    document.getElementById("upgradeBotao").style.display="block";
+
+  }
+  else if (user=="gestor") {
+    document.getElementById("meusBotao").style.display="none";
+    document.getElementById("logBotao").style.display="none";
+    document.getElementById("upgradeBotao").style.display="none";
+  }
+  else if (user=="proprietario") {
+    document.getElementById("meusBotao").style.display="block";
+    document.getElementById("logBotao").style.display="block";
+    document.getElementById("upgradeBotao").style.display="none";
+  }
+});
+</script>
+<script>
+function virarProprietario(){
+
+	var utilizador = "proprietario";
+  localStorage.setItem('flagUser', utilizador);
+	window.open('Conta.html','_self',false);
+}
+</script>
+  <style>
+  .user-row {
+    margin-bottom: 14px;
+  }
+
+  .user-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+  }
+
+  .dropdown-user:hover {
+    cursor: pointer;
+  }
+
+  .table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+  }
+
+  .table-user-information > tbody > tr:first-child {
+    border-top: 0;
+  }
+
+
+  .table-user-information > tbody > tr > td {
+    border-top: 0;
+  }
+  .toppad
+  {margin-top:20px;
+  }
+
+  .modal .modal-body {
+    max-height: 420px;
+    overflow-y: auto;
+  }
+  </style>
+  <script src="js/navbarConfig.js"></script>
+	<script src="js/sairAnalise.js"></script>
+</head>
+<body>
+
+		<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+		<div class="container topnav">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand topnav" href="index.html"><img src="./img/LOGO_NAV_TRANS_TEXT.png" /></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a id="indice" style="display:block" href="index.html">Uplace</a>
+          </li>
+          <li>
+            <a id="logbook" style="display:none" href="LogBook.html">Log Book</a>
+          </li>
+          <li>
+            <a id="adicionar" style="display:none" href="AdicionarImóvel.html">Adicionar Imóvel</a>
+          </li>
+          <li>
+            <a id="meus" style="display:none" href="MeusImoveis.html">Os Meus Imóveis</a>
+          </li>
+          <li>
+            <a id="aprovar" style="display:none" href="PaginaGestor.html">Aprovar Imóveis</a>
+          </li>
+          <li class="dropdown head-dpdn">
+            <a id="fav" href="#" class="dropdown-toggle" data-toggle="dropdown"  aria-expanded="false"><i class="fa fa-heart" aria-hidden="true"></i> Favoritos</a>
+            <ul style="min-width:300px" class="dropdown-menu" id='tabelaFav'>
+            </ul>
+          </li>
+          <li>
+            <a id="conta" style="display:none" href="Conta.html"  >Minha Conta</a>
+          </li>
+          <li>
+            <a id="logreg" style="display:bock" href="LoginRegistar.html" >Login/Registar</a>
+          </li>
+
+
+          <li>
+            <a id="logout" onclick="sair()" href="">Logout</a>
+          </li>
+        </ul>
+      </div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+  <div class="container" style="padding-top:65px">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+        <div class="panel panel-info">
+          <div class="panel-heading" style="background:rgb(79, 81, 193)">
+            <h3 class="panel-title">&nbsp;</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="img/1.png" style="width:80px" class="img-circle img-responsive"> </div>
+              <div class=" col-md-9 col-lg-9 ">
+                <table class="table table-user-information">
+                  <tbody>
+                    <tr>
+                      <td><span>Tipo de Conta:</span></td>
+                      <td><span  id="contauser"></span></td>
+                    </tr>
+                    <tr>
+                      <td>Nome:</td>
+                      <td>Filipa Fontes</td>
+                    </tr>
+                    <tr>
+                      <td>Data de Nascimento:</td>
+                      <td>01/24/1988</td>
+                    </tr>
+
+                    <tr>
+                      <tr>
+                        <td>Género:</td>
+                        <td>Feminino</td>
+                      </tr>
+                      <tr>
+                        <td>Home Address</td>
+                        <td>Rua do Valdoeiro nº18, Pampilhosa</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:info@support.com">xpto@xpto.com</a></td>
+                      </tr>
+                      <td>Contacto</td>
+                      <td>238 142 598<br>912 444 777
+                      </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+          <div class="  panel-footer" style="min-height: 50px">
+            <a  id="logBotao"href="LogBook.html" data-toggle="tooltip" type="button" class="col-lg-2 btn btn-sm btn-warning" style="margin-right:5px"></i>LogBook</a>
+            <a  id="meusBotao"href="MeusImoveis.html"data-toggle="tooltip" type="button" class="col-lg-2 btn btn-sm btn-warning">Meus Imóveis</a>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div style="margin-bottom:25px"class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+    <button id="upgradeBotao" type="button" class="pull-right btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" >Upgrade Conta</button>
+  </div>
+</div>
+
+
+
+  <footer class="footer-distributed" style="height:75px; background-color:#9fa09d">
+    <div class="footer-right" style="padding-top:7px">
+      <h4>
+        +351 230 998 412
+</h4>
+    </div>
+
+    <div class="footer-left">
+
+      <p class="footer-links">
+        Uplace
+      </p>
+
+      <p style="color:black">Company Name &copy; 2017</p>
+    </div>
+
+  </footer>
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Termos e Condições</h4>
+      </div>
+      <div class="modal-body">
+        <p style=" text-align:justify;font-style: italic; font-size:16px; ">O utilizador manifesta aceitar e agir em conformidade com os Termos e Condições de utilização aqui descritos, assim como com todas as suas futuras modificações, pelo facto de utilizar o serviço disponibilizado pela Uplace Unipessoal Ltd neste site.
+          Nos termos e condições aqui mencionados, sempre que forem utilizados os termos "nós" ou "nosso", referimo-nos ao Uplace Sempre que utilizarmos "você" ou "seu", referimo-nos a qualquer pessoa que utiliza o Uplace</p>
+          <p style=" text-align:justify;font-style: italic; font-size:16px; ">O acesso e utilização deste website estão sujeitos aos Termos e Condições seguintes, assim como à nossa Política de Privacidade. Ao navegar neste website, o utilizador concorda em agir de acordo com estes Termos e Condições e Política de Privacidade. Em caso de não concordar com o seu conteúdo, o usuário não está permitido a aceder e utilizar o website, devendo terminar o acesso e/ou a utilização imediatamente.
+            Se violar qualquer um dos termos aqui incluídos, o seu direito de aceder e utilizar este website será terminado imediatamente.
+            Reservamo-nos no direito de realizar alterações aos Termos de Utilização de tempos a tempos sem providenciar anteriormente qualquer notificação. Os Termos de Utilização emendados têm efeito a partir da data em que são anunciados neste website. Como estes Termos de Utilização são emendados de tempos a tempos, deve conferi-los sempre que visitar este website. O acesso continuado e utilização do website devem representar a sua aceitação dos Termos de Utilização emendados.
+            O Uplace reserva-se o direito de partilhar os dados que introduziu no website, bem como outros dados ou documentos que livremente tenha partilhado com o Uplace, com os seus parceiros por forma a puder aceder a simulações ou propostas de diversos produtos para si ou no sentido destes parceiros o contactarem propondo-lhe a aquisição de algum bem ou serviço, segundo aquilo que tenha pesquisado. O Uplace reserva-se também o direito de o contactar directamente propondo-lhe a aquisição de algum produto ou serviço de um seu parceiro. Os parceiros do Uplace são diversas empresas dos sectores bancários, de seguros e telecomunicações.</p>
+            <p style=" text-align:justify;font-style: italic; font-size:16px; ">O utilizador manifesta aceitar e agir em conformidade com os Termos e Condições de utilização aqui descritos, assim como com todas as suas futuras modificações, pelo facto de utilizar o serviço disponibilizado pela Uplace Unipessoal Ltd neste site.
+              Nos termos e condições aqui mencionados, sempre que forem utilizados os termos "nós" ou "nosso", referimo-nos ao Uplace Sempre que utilizarmos "você" ou "seu", referimo-nos a qualquer pessoa que utiliza o Uplace</p>
+              <p style="text-align:justify;font-style: italic; font-size:16px; ">O utilizador manifesta aceitar e agir em conformidade com os Termos e Condições de utilização aqui descritos, assim como com todas as suas futuras modificações, pelo facto de utilizar o serviço disponibilizado pela Uplace Unipessoal Ltd neste site.
+                Nos termos e condições aqui mencionados, sempre que forem utilizados os termos "nós" ou "nosso", referimo-nos ao Uplace Sempre que utilizarmos "você" ou "seu", referimo-nos a qualquer pessoa que utiliza o Uplace</p>
+                <p style="text-align:justify;font-style: italic; font-size:16px; ">O utilizador manifesta aceitar e agir em conformidade com os Termos e Condições de utilização aqui descritos, assim como com todas as suas futuras modificações, pelo facto de utilizar o serviço disponibilizado pela Uplace Unipessoal Ltd neste site.
+                  Nos termos e condições aqui mencionados, sempre que forem utilizados os termos "nós" ou "nosso", referimo-nos ao Uplace Sempre que utilizarmos "você" ou "seu", referimo-nos a qualquer pessoa que utiliza o Uplace</p>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button  onclick="virarProprietario()"type="button" class="btn btn-success" data-dismiss="modal">Upgrade!</button>
+                    </div>
+                  </div>
+
+                </div>
+</div>
+                <!-- /.container -->
+
+                <!-- /.banner -->
+
+                <!-- Footer
+                <footer>
+                <div class="container">
+                <div class="row">
+                <div class="col-lg-12">
+                <ul class="list-inline">
+                <li>
+                <a href="#">Home</a>
+              </li>
+              <li class="footer-menu-divider">&sdot;</li>
+              <li>
+              <a href="#about">Sobre</a>
+            </li>
+            <li class="footer-menu-divider">&sdot;</li>
+            <li>
+            <a href="#services">Serviços</a>
+          </li>
+          <li class="footer-menu-divider">&sdot;</li>
+          <li>
+          <a href="#contact">Contactos</a>
+        </li>
+      </ul>
+      <p class="copyright text-muted small">Copyright &copy; UPlace 2017. All Rights Reserved</p>
+    </div>
+  </div>
+</div>
+</footer> -->
+
+<!-- jQuery -->
+<!-- Latest compiled and minified CSS -->
+
+
+<!-- Latest compiled and minified JavaScript -->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>-->
+
+<script src="js/jquery.js"></script>
+<script src="js/Button-Select.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

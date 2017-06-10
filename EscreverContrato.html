@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>UPlace - Imóveis</title>
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="css/landing-page.css" rel="stylesheet">
+  <link href="css/Button-Select.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="stars.css">
+  <link rel="stylesheet" type="text/css" href="css/contrato.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/Button-Select.js"></script>
+  <script src="js/stars.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/contrato.js"></script>
+  <link rel="stylesheet" href="css/footer-distributed.css">
+
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <!-- Custom Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!--PDP-->
+  <script src="jsPDF-master/dist/jspdf.min.js"></script>
+  <script src="jsPDF-master/examples/html2canvas.js"></script>
+  <script src="js/navbarConfig.js"></script>
+  <script src="js/sairAnalise.js"></script>
+  <script src="js/wishlistOther.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    $('.date-picker').datepicker( {
+      changeMonth: true,
+      changeYear: true,
+      showButtonPanel: true,
+      dateFormat: 'MM/yy',
+      dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+      monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+      monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+      onClose: function(dateText, inst) {
+        $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+      }
+    });
+  });
+  </script>
+  <style>
+  .ui-datepicker-calendar {
+    display: none;
+  }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+    <div class="container topnav">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand topnav" href="index.html"><img src="./img/LOGO_NAV_TRANS_TEXT.png" /></a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a id="indice" style="display:block" href="index.html">Uplace</a>
+          </li>
+          <li>
+            <a id="logbook" style="display:none" href="LogBook.html">Log Book</a>
+          </li>
+          <li>
+            <a id="adicionar" style="display:none" href="AdicionarImóvel.html">Adicionar Imóvel</a>
+          </li>
+          <li>
+            <a id="meus" style="display:none" href="MeusImoveis.html">Os Meus Imóveis</a>
+          </li>
+          <li>
+            <a id="aprovar" style="display:none" href="PaginaGestor.html">Aprovar Imóveis</a>
+          </li>
+          <li class="dropdown head-dpdn">
+            <a id="fav" href="#" class="dropdown-toggle" data-toggle="dropdown"  aria-expanded="false"><i class="fa fa-heart" aria-hidden="true"></i> Favoritos</a>
+            <ul style="min-width:300px" class="dropdown-menu" id='tabelaFav'>
+            </ul>
+          </li>
+          <li>
+            <a id="conta" style="display:none" href="Conta.html"  >Minha Conta</a>
+          </li>
+          <li>
+            <a id="logreg" style="display:bock" href="LoginRegistar.html" >Login/Registar</a>
+          </li>
+
+
+          <li>
+            <a id="logout" onclick="sair()" href="">Logout</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+
+  <!-- Page Content -->
+
+  <div class="container">
+    <br><br>
+    <div class="col-lg-12">
+      <h1 class="page-header">Gerar Contrato de Arrendamento
+      </h1>
+    </div>
+    <div class="col-lg-10 col-lg-offset-1 ">
+      <form class="form-horizontal" action="/action_page.php">
+        <h2 class="page-header">Informações do Arrendatário
+        </h1>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="date-picker">Datas:</label>
+          <div class="col-lg-3">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+              <input name="startDate" id="startDate" placeholder="Check-In" class="date-picker" />
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+              <input name="finishDate" id="finishDate" placeholder="Check-Out" class="date-picker" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="nome">Nome Completo:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="nome" placeholder="Escrever Nome Completo" name="nome">
+          </div>
+          <label class="control-label col-sm-2" for="cc">Cartão de Cidadão:</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="cc" placeholder="00000000000" name="cc">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="civil">Estado Civil:</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" placeholder="Casado/Solteiro" id="civil" name="civil">
+          </div>
+          <label class="control-label col-sm-1" for="nif">NIF:</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" placeholder="000000000"id="nif" name="nif">
+          </div>
+          <label class="control-label col-sm-1" for="contacto">Contacto:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" placeholder="+351 000000000"id="contacto" name="contacto">
+          </div>
+        </div>
+
+        <h3 class="col-lg-offset-1" style="color:#696969">Morada</h3 >
+          <br />
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="rua">Rua : </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="rua" placeholder="Nome da Rua" name="rua">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-lg-2" for="freguesia">Freguesia : </label>
+            <div class="col-lg-2">
+              <input type="text" class="form-control" id="freguesia" placeholder="Freguesia" name="freguesia">
+            </div>
+            <label class="control-label col-lg-2" for="concelho">Concelho : </label>
+            <div class="col-lg-2">
+              <input type="text" class="form-control" id="concelho" placeholder="Concelho" name="concelho">
+            </div>
+            <label class="control-label col-lg-2" for="distrito">Distrito : </label>
+            <div class="col-lg-2">
+              <input type="text" class="form-control" id="distrito" placeholder="Distrito" name="distrito">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="postal">Código Postal : </label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="postal" placeholder="0000-000" name="postal">
+            </div>
+            <label class="control-label col-sm-2" for="nr">Nº Porta : </label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="nr" placeholder="1ºAndar 4E "name="nr">
+            </div>
+
+          </div>
+          <br />
+          <h2 class="page-header">Informações do Fiador
+          </h2>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="nomef">Nome Completo:</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="nomef" placeholder="Escrever Nome Completo" name="nomef">
+            </div>
+            <label class="control-label col-sm-2" for="ccf">Cartão de Cidadão:</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="ccf" placeholder="00000000000" name="cfc">
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="civilf">Estado Civil:</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" placeholder="Casado/Solteiro" id="civilf" name="civilf">
+            </div>
+            <label class="control-label col-sm-1" for="niff">NIF:</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" placeholder="000000000"id="niff" name="niff">
+            </div>
+            <label class="control-label col-sm-1" for="contactof">Contacto:</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" placeholder="+351 000000000"id="contactof" name="contactof">
+            </div>
+          </div>
+
+          <h3 class="col-lg-offset-1" style="color:#696969">Morada</h3 >
+            <br />
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="ruaf">Rua : </label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ruaf" placeholder="Nome da Rua" name="ruaf">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-lg-2" for="freguesiaf">Freguesia : </label>
+              <div class="col-lg-2">
+                <input type="text" class="form-control" id="freguesiaf" placeholder="Freguesia" name="freguesiaf">
+              </div>
+              <label class="control-label col-lg-2" for="concelhof">Concelho : </label>
+              <div class="col-lg-2">
+                <input type="text" class="form-control" id="concelhof" placeholder="Concelho" name="concelhof">
+              </div>
+              <label class="control-label col-lg-2" for="distritof">Distrito : </label>
+              <div class="col-lg-2">
+                <input type="text" class="form-control" id="distritof" placeholder="Distrito" name="distritof">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="postalf">Código Postal : </label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="postalf" placeholder="0000-000" name="postalf">
+              </div>
+              <label class="control-label col-sm-2" for="nrf">Nº Porta : </label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="nrf" placeholder="1ºAndar 4E "name="nrf">
+              </div>
+
+            </div>
+
+          </div>
+
+          <br /><br /> <br />
+        </div>
+      </div>
+    </form>
+  </div>
+  <br />
+  <br />
+  <div class="container">
+    <div class="row">
+      <button class="col-lg-2 col-lg-offset-4 btn btn-warning btn-lg" onclick="atualizarContrato()"><b>Previsualizar Contrato</b></button>
+      <button class="col-lg-2 btn btn-success btn-lg" onclick="atualizarContrato();genPDF();esconder()" style="margin-left:10px"><b>Imprimir Contrato</b></button>
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="container" id="divContrato" style="display: none">
+
+    <h1 class="page-header">Contrato Final</h1>
+
+    <div class="col-lg-10 col-lg-offset-1">
+      <br />
+      <span class="contrato">PRIMEIRO OUTORGANTE: <span class=contratoInput id="prop"></span>, portador do Cartão de Cidadão Nr <b>123456789ZY1</b>, NIF <b>123456789</b> residente na <b>Rua da Igreja</b>, número<b> 4 - 1ºAndar 1E</b>,<b>  Esgueira</b>,<b> 3000-001</b> - <b> Esgueira</b>, com o contacto <b>960123456</b>, na qualidade de Senhorio.</span>
+      <br /><br />
+
+      <span class="contrato">SEGUNDO OUTORGANTE: <span class=contratoInput id="primnome"></span> , portador do Cartão de Cidadão Nr <span class=contratoInput id="primcc"></span>, NIF <span class=contratoInput id="primnif"></span> residente na <span class=contratoInput id="primrua"></span>, número <span class=contratoInput id="primnr"></span> , <span class=contratoInput id="primfreguesia1"></span>, <span class=contratoInput id="primpostal"></span> - <span class=contratoInput id="primfreguesia2"></span>, com o contacto <span class=contratoInput id="primcontacto"></span>, na qualidade de Inquilino.</span>
+      <br /><br />
+
+      <span class="contrato">TERCEIRO OUTORGANTE: <span class=contratoInput id="fnome"></span> , portador do Cartão de Cidadão Nr <span class=contratoInput id="fcc"></span>, NIF <span class=contratoInput id="fnif"></span> residente na <span class=contratoInput id="frua"></span>, número <span class=contratoInput id="fnr"></span> , <span class=contratoInput id="ffreguesia1"></span>, <span class=contratoInput id="fpostal"></span> - <span class=contratoInput id="ffreguesia2"></span>, com o contacto <span class=contratoInput id="fcontacto"></span>, na qualidade de Fiador.</span>
+      <br /><br />
+
+      <center><h4>Cláusula Primeira</h4></center>
+      <br />
+      <span class="contrato">O primeiro outorgante é dono e legítimo possuidor da fração autónoma designada pela letra A , correspondente ao 1º andar direito do prédio sito na Avenida de Roma, n.º 243, freguesia de Lisboa , concelho de Lisboa, descrito na Conservatória do Registo Predial de Lisboa sob o número 9986 e inscrito na matriz predial da respetiva freguesia com o artigo U6721, com a licença de habitação número 1000235A4R, emitida em 1 de março de 1999 pela Câmara Municipal de Lisboa</span>
+      <br /><br />
+
+      <center><h4>Cláusula Segunda</h4></center>
+      <br />
+      <span class="contrato">De acordo com este contrato, o primeiro outorgante arrenda e o segundo outorgante toma de arrendamento a fração dentificada na cláusula primeira, que se destina exclusivamente a habitação própria e permanente do segundo outorgante, não lhe podendo ser dado outro fim ou uso, sob pena de resolução contratual.</span>
+      <br /><br />
+
+      <center><h4>Cláusula Terceira</h4></center>
+      <br />
+      <span class="contrato">Este arrendamento é feito  com início em <span class=contratoInput id="dataInicio"></span> e termo em <span class=contratoInput id="dataFinal"></span>, sem renovação, a menos que os outorgantes assim o acordem. </span>
+      <br />
+      <br />
+
+      <center><h4>Cláusula Quarta</h4></center>
+      <br />
+      <span class="contrato">
+        <ol>
+          <li>A renda mensal é de 750 euros, a pagar pelo segundo outorgante ao primeiro outorgante até ao primeiro dia útil do mês anterior àquele a que disser respeito, por depósito ou transferência bancária para o NIB a indicar pelo primeiro outorgante.</li><br />
+
+          <li>
+            No ato de assinatura do presente contrato, o segundo outorgante entrega ao primeiro outorgante a quantia de 500 euros , dando esta última a respetiva quitação após boa cobrança, respeitante às seguintes verbas:
+
+            <ol type="a"><br />
+              <li> 750 euros, a título de caução e para garantia do bom e pontual cumprimento das obrigações assumidas pelo presente contrato;</li><br />
+              <li> 750 euros correspondente à renda do mês de <span class=contratoInput id="mes"></span> de <span class=contratoInput id="ano"></span>.</li>
+            </ol><br />
+          </li>
+
+          <li>A renda acordada fica sujeita às atualizações anuais de acordo com os valores legalmente fixados, podendo a primeira atualização ser exigida pelo primeiro outorgante ao segundo outorgante um ano depois da entrada em vigor do presente contrato.</li><br />
+
+          <li>Para os efeitos do disposto no número anterior, o primeiro outorgante deverá comunicar, por escrito, ao segundo outorgante, com uma antecedência mínima de trinta (30) dias, o montante atualizado da nova renda, indicando expressamente o valor utilizado no respetivo cálculo.</li><br />
+
+          <li>A renda atualizada será devida pelo segundo outorgante a partir do mês seguinte àquele em que a mesma lhe for comunicada pelo primeiro outorgante.</li>
+
+        </ol>
+      </span>
+      <br />
+
+      <center><h4>Cláusula Quinta</h4></center>
+      <br />
+      <span class="contrato">O segundo outorgante não pode sublocar ou ceder, no todo ou em parte, onerosa ou gratuitamente, a fração, sem consentimento expresso e dado por escrito do primeiro outorgante.  <br /></span>
+      <br />
+
+      <center><h4>Cláusula Sexta </h4></center>
+      <br />
+      <span class="contrato">
+        <ol>
+          <li>Só poderão ser efetuadas obras ou benfeitorias no local arrendado com prévia autorização escrita do primeiro outorgante, com exceção das reparações urgentes.</li><br />
+
+          <li>Todas e quaisquer obras de melhoramento que o segundo outorgante efetue na fração arrendada e que tenham a autorização do primeiro outorgante ficarão a fazer parte do mesmo, não podendo o segundo outorgante exigir qualquer indemnização ou alegar retenção, mesmo quando autorizadas.</li><br />
+
+        </ol>
+      </span>
+
+      <center><h4>Cláusula Sétima</h4></center>
+      <br />
+      <span class="contrato">Todos os encargos relativos ao consumo de água, eletricidade, gás, telefone, internet, manutenção e limpeza do arredando e outras, correspondentes ao período de vigência deste contrato, mesmo que se venham a vencer em data posterior ao termo do contrato são da responsabilidade do segundo outorgante.<br /></span>
+      <br />
+
+      <center><h4>Cláusula Oitava </h4></center>
+      <br />
+      <span class="contrato">
+        <ol>
+          <li>O segundo outorgante obriga-se a preservar, no estado em que atualmente se encontram, as instalações e canalizações de água, eletricidade, esgotos, paredes, pavimentos, pinturas e vidros (bem como o equipamento existente na fração, constituído por armários de cozinha, fogão, forno, esquentador, exaustor, máquina de lavar loiça, máquina de lavar roupa, candeeiros, secador de toalhas, roupeiros e instalações sanitárias e demais bens móveis, correndo por sua conta todas as reparações decorrentes de culpa ou negligência sua).</li><br />
+
+          <li>O segundo outorgante obriga-se a fazer um uso prudente da fração que deverá ser restituída em bom estado, ressalvadas as deteriorações normais e inerentes a uma prudente utilização, em conformidade com os fins do contrato.</li><br />
+
+        </ol>
+      </span>
+
+      <center><h4>Cláusula Nona</h4></center>
+      <br />
+      <span class="contrato">
+        <ol>
+          <li>O terceiro outorgante, na qualidade de fiador, sem renunciar ao benefício da excussão prévia, assume solidariamente com o segundo outorgante o cumprimento de todas as cláusulas deste contrato, seus eventuais aditamentos e renovações até efetiva restituição do arrendado, livre de pessoas e bens.</li><br />
+
+          <li>O fiador declara que a fiança que acabou de prestar subsistirá ainda que se verifiquem alterações da renda agora fixada.</li><br />
+
+        </ol>
+      </span>
+
+      <center><h4>Cláusula Décima</h4></center>
+      <br />
+      <span class="contrato">Em tudo o não previsto neste contrato, rege o disposto na Lei 31/2012, de 14 de agosto.<br /></span>
+      <br />
+
+      <center><h4>Cláusula Décima Primeira</h4></center>
+      <br />
+      <span class="contrato">O segundo outorgante compromete-se a respeitar e cumprir integralmente o regulamento do condomínio que se anexa a este contrato e fica a fazer parte integrante do mesmo.<br /> <br />O presente contrato é feito em quadriplicado, ficando um exemplar em poder de cada uma das partes e sendo um exemplar entregue no Serviço de Finanças competente.<br />
+      </span>
+      <br />
+      <br />
+      <br />
+      <span  style="text-align: justify; font-size:20px">Assinatura do Primeiro Outorgante: <br /></span>
+      <br />
+      <span  style="text-align: justify; font-size:20px">Assinatura do Segundo Outorgante:<br /></span>
+      <br />
+      <span  style="text-align: justify; font-size:20px">Assinatura do Terceiro Outorgante:<br /></span>
+      <br />
+      <span  style="text-align: justify; font-size:20px">Data:<br /></span>
+      <br />
+    </div>
+  </div>
+
+
+
+
+</div>
+
+  <footer class="footer-distributed" style="height:75px; background-color:#9fa09d">
+    <div class="footer-right" style="padding-top:7px">
+      <h4>
+        +351 230 998 412
+</h4>
+    </div>
+
+    <div class="footer-left">
+
+      <p class="footer-links">
+        Uplace
+      </p>
+
+      <p style="color:black">Company Name &copy; 2017</p>
+    </div>
+
+  </footer>
+
+<!-- Modal -->
+<div class="modal fade" id="avaliar" role="dialog">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Avaliar o Imóvel</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+
+          <div class="row lead">
+            <div class="col-lg-2 col-md-6 col-sm-6">
+              <span style="color:#696969 ; font-size:17px">Precisão:&nbsp&nbsp</span>
+              <span style="color:#696969 ; font-size:17px">Comunicação:&nbsp&nbsp</span>
+              <span style="color:#696969 ; font-size:17px">Limpeza:&nbsp&nbsp</span>
+              <span style="color:#696969 ; font-size:17px">Localização:&nbsp&nbsp</span>
+              <span style="color:#696969 ; font-size:17px">Check-in:&nbsp&nbsp</span>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div id="stars" class="starrr"></div>
+              <div id="stars" class="starrr"></div>
+              <div id="stars" class="starrr"></div>
+              <div id="stars" class="starrr"></div>
+              <div id="stars" class="starrr"></div>
+            </div>
+          </div>
+          <div class="row lead">
+            <div class="form-group">
+              <label for="comment">Review:</label>
+              <br />
+              <textarea style="max-width:45%" class="form-control col-lg-2" rows="5" id="comment"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Submeter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

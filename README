@@ -1,0 +1,58 @@
+	
+	------------------------------------------------------------------------
+	|                             ONLINE SITE                              |
+	------------------------------------------------------------------------
+	 
+	1) O site encontra-se disponível em http://uplace.bitballoon.com/
+	
+	NOTA IMPORTANTE: Devido a alguns erros cuja correção não foi possível, o website tem um pequeno bug no login e logout dos utilizadores. Ao fazer o logout, era suposto redirecionar para o index do site, contudo, tal não acontece. Este problema apenas se observa quando fazemos o upload de o site para um servidor host, uma vez que em local está tudo a funcionar corretamente.
+	É recomendado que o site seja corrido em local.
+
+	
+	------------------------------------------------------------------------
+	|				TIPOS DE LOGIN                         |
+	------------------------------------------------------------------------
+	 
+	1) Utilizador geral :  username: default
+	2) Proprietário : username: proprietario
+	3) Gestor de Plataforma: username: gestor
+	4) Equipa de Análise Financeira: username: analise
+
+	NOTA: Não há verificação de palavra-passe.
+
+ 
+	------------------------------------------------------------------------
+	|				MAIN FEATURES                          |
+	------------------------------------------------------------------------
+
+	1)---Search Engine (Todos os Utilizadores)---
+		No index, no topo, existem diversos selects que permitem escolher as condições de pesquisa
+
+	2)---Comparador de Imóveis (Todos os Utilizadores)---
+		No index, podemos comparar imóveis carregando na opção“Adicionar ao Comparador”. Posteriormente, irá aparecer um botão do lado direito que permitirá comparar os imóveis. Este comparador suporta até 3 imóveis.
+
+	3)---Favoritos (Proprietários e utilizadores Gerais)---
+		Esta feature apenas está disponível para utilizadores gerais e para os proprietários. Todos os anúncios têm uma opção “Adicionar aos favoritos”. Assim que que se clicar neste botão, a opção “Favoritos”, na navbar,  que irá dar display de uma tabela com todos os favoritos, bem como uma hiperligação para os anúncios em causa. Existe a possibilidade de eliminar um imóvel dos favoritos através da tabela existente na aba “Favoritos”.
+	
+	4)---Criar um contrato de arrendamento (Proprietários e utilizadores Gerais)---
+		Apenas para utilizadores gerais e proprietários. Ao abrir um anúncio existe um button que redireciona para uma página com campos que podem ser preenchidos de forma a gerar um contrato para o imóvel em questão. O utilizador pode visualizar apenas o contrato ou fazer o download do mesmo para um pdf;
+
+	5)---Adicionar um novo Imóvel (Proprietários)---
+		Apenas acessível a proprietários. Na navbar existe uma aba “Adicionar Imóvel”  que permite ao utilizador gerar um novo anúncio. Há que preencher diversas informações acerca do mesmo, sendo necessário o upload de documentos que provem que o proprietário é o dono do imóvel em questão
+	
+	6)---Ver o estado de uma nova submissão (Proprietários)---
+		Apenas acessível a proprietários. Para ver o estado de uma nova submissão o utilizador acede ao tab “Meus Imóveis”  e pode ver se o imóvel foi aprovado ou recusado pelo gestor da plataforma
+
+	7)---Aprovar ou recusar um imóvel (Gestor)---
+		O gestor da plataforma  pode ver os imóveis submetidos e aprovar ou recusar a sua submissão, com base na validade das informações inseridas pelos proprietários
+
+	8)---Consultar informações financeiras do sistema (Equipa de Análise Financeira)---
+		A equipa de análise técnica tem um login específico. Ao fazer login pode ver todas as informações relativas aos dados económicos  da plataforma bem como ao fluxo de utilizadores
+
+	9)---Upgrade Account (Utilizadores Gerais)---
+		Um utilizador geral pode ir ao tab “account” e fazer upgrade para um conta de proprietário. Ao fazê-lo irá aparecer um modal com as condições definidas para o utilizador proprietário
+ 
+
+ 
+ 
+

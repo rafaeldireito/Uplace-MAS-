@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>UPlace - Adicionar Imóvel</title>
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/footer-distributed.css">
+  <link href="css/landing-page.css" rel="stylesheet">
+  <link href="css/Button-Select.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="stars.css">
+  <link rel="stylesheet" type="text/css" href="css/contrato.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/Button-Select.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <!-- Custom Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <!--Upload-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+  <link href="themes/explorer/theme.css" media="all" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="js/plugins/sortable.js" type="text/javascript"></script>
+  <script src="js/fileinput.js" type="text/javascript"></script>
+  <script src="js/uploadScript.js" type="text/javascript"></script>
+  <script src="js/upload_single.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="css/upload_single.css">
+  <script src="themes/explorer/theme.js" type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="js/navbarConfig.js"></script>
+	<script src="js/sairAnalise.js"></script>
+  <script src="js/wishlistOther.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/footer-distributed.css">
+
+<script>
+function adicionado(){
+  alert("Imóvel Adicionado com Sucesso!");
+  window.open("MeusImoveis.html", "_self" );
+}
+
+</script>
+
+</head>
+<body>
+
+		<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+		<div class="container topnav">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand topnav" href="index.html"><img src="./img/LOGO_NAV_TRANS_TEXT.png" /></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a id="indice" style="display:block" href="index.html">Uplace</a>
+          </li>
+          <li>
+            <a id="logbook" style="display:none" href="LogBook.html">Log Book</a>
+          </li>
+          <li>
+            <a id="adicionar" style="display:none" href="AdicionarImóvel.html">Adicionar Imóvel</a>
+          </li>
+          <li>
+            <a id="meus" style="display:none" href="MeusImoveis.html">Os Meus Imóveis</a>
+          </li>
+          <li>
+            <a id="aprovar" style="display:none" href="PaginaGestor.html">Aprovar Imóveis</a>
+          </li>
+          <li class="dropdown head-dpdn">
+            <a id="fav" href="#" class="dropdown-toggle" data-toggle="dropdown"  aria-expanded="false"><i class="fa fa-heart" aria-hidden="true"></i> Favoritos</a>
+            <ul style="min-width:300px" class="dropdown-menu" id='tabelaFav'>
+            </ul>
+          </li>
+          <li>
+            <a id="conta" style="display:none" href="Conta.html"  >Minha Conta</a>
+          </li>
+          <li>
+            <a id="logreg" style="display:bock" href="LoginRegistar.html" >Login/Registar</a>
+          </li>
+
+
+          <li>
+            <a id="logout" onclick="sair()" href="">Logout</a>
+          </li>
+        </ul>
+      </div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+
+
+  <!-- Page Content -->
+
+  <div class="container">
+    <br><br>
+    <div class="col-lg-12">
+      <h1 class="page-header">Adicionar Imóvel
+      </h1>
+
+      <form class="form-horizontal" action="/action_page.php">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="titulo">Título do Anúncio:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="titulo" placeholder="Título do Anúncio" name="titulo">
+          </div>
+        </div>
+
+        <div class="form-group">
+
+          <label for="pessoas" class="col-sm-2 control-label">Residentes na mesma habitação:</label>
+          <div class="col-sm-1">
+            <select class="form-control" name="pessoas" id="pessoas">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="7">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="8+">+8</option>
+            </select>
+          </div>
+
+          <label for="quartos" class="col-sm-1 control-label">Camas:</label>
+          <div class="col-sm-1">
+            <select class="form-control" name="quartos" id="quartos">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4+">4+</option>
+            </select>
+          </div>
+
+          <label for="WC" class="col-sm-1 control-label">WC's:</label>
+          <div class="col-sm-2">
+            <select class="form-control" name="WC" id="WC">
+              <option value="1">Privativo</option>
+              <option value="2">Comum</option>
+
+            </select>
+          </div>
+          <label for="despesas" class="col-sm-1 control-label">Despesas:</label>
+          <div class="col-sm-2">
+            <select class="form-control" name="despesas" id="despesas">
+              <option value="1">Incluidas</option>
+              <option value="2">Não Incluidas</option>
+
+            </select>
+          </div>
+        </div>
+
+        <br />
+        <div>
+          <hr />
+        </div>
+        <h3 class="col-lg-offset-1" style="color:#696969">Morada</h3 >
+
+          <br />
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="rua">Rua : </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="rua" placeholder="Nome da Rua" name="rua">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-lg-2" for="freguesia">Freguesia : </label>
+            <div class="col-lg-2">
+              <input type="text" class="form-control" id="freguesia" placeholder="Freguesia" name="freguesia">
+            </div>
+            <label class="control-label col-lg-2" for="concelho">Concelho : </label>
+            <div class="col-lg-2">
+              <input type="text" class="form-control" id="concelho" placeholder="Concelho" name="concelho">
+            </div>
+            <label class="control-label col-lg-2" for="distrito">Distrito : </label>
+            <div class="col-lg-2">
+              <input type="text" class="form-control" id="distrito" placeholder="Distrito" name="distrito">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="postal">Código Postal : </label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="postal" placeholder="0000-000" name="postal">
+            </div>
+            <label class="control-label col-sm-2" for="nr">Nº Porta : </label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="nr" placeholder="1ºAndar 4E "name="nr">
+            </div>
+
+          </div>
+          <br />
+          <div>
+            <hr />
+          </div>
+          <h3 class="col-lg-offset-1" style="color:#696969">Preços</h3 >
+
+            <br />
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="noite">Preço Mensal: </label>
+              <div class="col-sm-1">
+                <input type="text" class="form-control" id="noite" placeholder="€€€" name="noite">
+              </div>
+              <label class="control-label col-lg-2" for="limpeza">Taxa de Limpeza : </label>
+              <div class="col-lg-1">
+                <input type="text" class="form-control" id="limpeza" placeholder="€€€" name="limpez">
+              </div>
+            </div>
+
+
+            <br />
+            <div>
+              <hr />
+            </div>
+            <h3 class="col-lg-offset-1" style="color:#696969">Comodidades</h3 >
+
+              <br />
+              <div class="form-group">
+                <div class=" col-sm-offset-3 col-sm-3" style="font-size:18px">
+                  <label class="checkbox"><input  type="checkbox" name="internet">Internet</label>
+                  <label class="checkbox"><input type="checkbox" name="aquecimento">Aquecimento Central</label>
+                  <label class="checkbox"><input type="checkbox" name="tv">TV por Cabo</label>
+                  <label class="checkbox"><input type="checkbox" name="elevador">Elevador</label>
+                </div>
+                <div class="col-sm-3" style="font-size:18px">
+                  <label class="checkbox"><input  type="checkbox" name="maquina">Máquina de Lavar a Roupa</label>
+                  <label class="checkbox"><input type="checkbox" name="secador">Secador de Cabelo</label>
+                  <label class="checkbox"><input type="checkbox" name="intercomunicador">Intercomunicador</label>
+                  <label class="checkbox"><input type="checkbox" name="louça">Máquina da Louça</label>
+                </div>
+              </div>
+              <br />
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="outros">Outros : </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="outros" placeholder="Aspirador, Tábua de Passar a Ferro,..." name="outros">
+                </div>
+              </div>
+
+              <br />
+              <div>
+                <hr />
+              </div>
+              <h3 class="col-lg-offset-1" style="color:#696969">Fotografias</h3 >
+                <div class="container kv-main col-sm-6 col-sm-offset-3">
+                  <form enctype="multipart/form-data">
+                    <input id="kv-explorer" type="file" multiple>
+                    <br>
+                  </form>
+                </div>
+                <div>
+                  <hr />
+                </div>
+                <div class="col-lg-12">
+                  <div>
+                    <hr />
+                  </div>
+                  <h3 class="col-lg-offset-1" style="color:#696969">Documentos:</h3 >
+                    <br />
+                    <div class="form-group">
+                      <div class="fileupload fileupload-new col-sm-offset-1" data-provides="fileupload">
+                        <span class="btn btn-warning btn-file"><span class="fileupload-new">Upload Caderneta Predial</span>
+                        <span class="fileupload-exists">Alterar Caderneta Predial</span>         <input type="file" /></span>
+                        <span class="fileupload-preview"></span>
+                        <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                      </div>
+
+                    </div>
+                    <div class="form-group">
+                      <div class="fileupload fileupload-new col-sm-offset-1" data-provides="fileupload">
+                        <span class="btn btn-warning btn-file"><span class="fileupload-new">Upload Escritura</span>
+                        <span class="fileupload-exists">Alterar Escritura</span>         <input type="file" /></span>
+                        <span class="fileupload-preview"></span>
+                        <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                      </div>
+                      <br /><br />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div>
+                    <hr />
+                  </div>
+                  <h3 class="col-lg-offset-1" style="color:#696969">Termos:</h3 >
+                    <br />
+                    <div class="form-group">
+
+       <div class="col-sm-offset-2 col-sm-8">
+           <div style="border: 1px solid #e5e5e5; height: 200px; overflow: auto; padding: 10px;">
+               <p>Lorem ipsum dolor sit amet, veniam numquam has te. No suas nonumes recusabo mea, est ut graeci definitiones. His ne melius vituperata scriptorem, cum paulo copiosae conclusionemque at. Facer inermis ius in, ad brute nominati referrentur vis. Dicat erant sit ex. Phaedrum imperdiet scribentur vix no, ad latine similique forensibus vel.</p>
+               <p>Dolore populo vivendum vis eu, mei quaestio liberavisse ex. Electram necessitatibus ut vel, quo at probatus oportere, molestie conclusionemque pri cu. Brute augue tincidunt vim id, ne munere fierent rationibus mei. Ut pro volutpat praesent qualisque, an iisque scripta intellegebat eam.</p>
+               <p>Mea ea nonumy labores lobortis, duo quaestio antiopam inimicus et. Ea natum solet iisque quo, prodesset mnesarchum ne vim. Sonet detraxit temporibus no has. Omnium blandit in vim, mea at omnium oblique.</p>
+               <p>Eum ea quidam oportere imperdiet, facer oportere vituperatoribus eu vix, mea ei iisque legendos hendrerit. Blandit comprehensam eu his, ad eros veniam ridens eum. Id odio lobortis elaboraret pro. Vix te fabulas partiendo.</p>
+               <p>Natum oportere et qui, vis graeco tincidunt instructior an, autem elitr noster per et. Mea eu mundi qualisque. Quo nemore nusquam vituperata et, mea ut abhorreant deseruisse, cu nostrud postulant dissentias qui. Postea tincidunt vel eu.</p>
+               <p>Ad eos alia inermis nominavi, eum nibh docendi definitionem no. Ius eu stet mucius nonumes, no mea facilis philosophia necessitatibus. Te eam vidit iisque legendos, vero meliore deserunt ius ea. An qui inimicus inciderint.</p>
+           </div>
+       </div>
+   </div>
+
+   <div class="form-group">
+       <div class="col-xs-6 col-xs-offset-2">
+           <div class="checkbox">
+               <label>
+                   <input type="checkbox" name="agree" value="agree" /> Concordo com os termos apresentados
+               </label>
+
+           </div>
+       </div>
+   </div>
+
+                <div class="form-group" >
+                  <div class="col-sm-offset-2 col-sm-9" style="margin-top:25px">
+                    <button type="" onclick="adicionado()"class="btn btn-success pull-right col-sm-2">Submeter</button>
+                    <button type="reset" class="btn btn-danger pull-right col-sm-2" style="margin-right:5px">Reset</button>
+                  </div>
+                </div>
+              </form>
+
+
+
+
+
+            </div>
+
+          </div>
+
+          <br /><br /> <br />
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  <footer class="footer-distributed" style="height:75px; background-color:#9fa09d">
+    <div class="footer-right" style="padding-top:7px">
+      <h4>
+        +351 230 998 412
+</h4>
+    </div>
+
+    <div class="footer-left">
+
+      <p class="footer-links">
+        Uplace
+      </p>
+
+      <p style="color:black">Company Name &copy; 2017</p>
+    </div>
+
+  </footer>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="avaliar" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Condições</h4>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row lead">
+              <div class="col-lg-2 col-md-6 col-sm-6">
+                <span style="color:#696969 ; font-size:17px">Precisão:&nbsp&nbsp</span>
+                <span style="color:#696969 ; font-size:17px">Comunicação:&nbsp&nbsp</span>
+                <span style="color:#696969 ; font-size:17px">Limpeza:&nbsp&nbsp</span>
+                <span style="color:#696969 ; font-size:17px">Localização:&nbsp&nbsp</span>
+                <span style="color:#696969 ; font-size:17px">Check-in:&nbsp&nbsp</span>
+              </div>
+              <div class="col-lg-3 col-md-6 col-sm-6">
+                <div id="stars" class="starrr"></div>
+                <div id="stars" class="starrr"></div>
+                <div id="stars" class="starrr"></div>
+                <div id="stars" class="starrr"></div>
+                <div id="stars" class="starrr"></div>
+              </div>
+            </div>
+            <div class="row lead">
+              <div class="form-group">
+                <label for="comment">Review:</label>
+                <br />
+                <textarea style="max-width:45%" class="form-control col-lg-2" rows="5" id="comment"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Submeter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+
+  </html>

@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Uplace</title>
+	<meta name="description" content="Blueprint: A basic responsive product grid layout with comparison functionality" />
+	<meta name="keywords" content="blueprint, template, html, css, javascript, grid, layout, effect, product comparison" />
+	<meta name="author" content="Codrops" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<script src="js/modernizr.custom.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/landing-page.css" rel="stylesheet">
+	<link href="css/Button-Select.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="js/Button-Select.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="js/comparador.js"></script>
+	<script src="js/navbarConfig.js"></script>
+	<script src="js/sairAnalise.js"></script>
+	<script src="js/wishlist.js"></script>
+	<script src="js/favoritos.js"></script>
+	<link href="css/fav.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/footer-distributed.css">
+
+	<script>
+	window.addEventListener("beforeunload", function (e) {
+	var tabela = document.getElementById('tabelaFav').innerHTML;
+	localStorage.setItem('source', tabela);
+	});
+</script>
+	<style>
+	.car{
+		min-width:100%;
+		height:210px;
+	}
+	.imgCar{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+	}
+	.controlCar{
+		background:none !important;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function() {
+		$('.date-picker').datepicker( {
+			changeMonth: true,
+			changeYear: true,
+			showButtonPanel: true,
+			dateFormat: 'MM yy',
+			onClose: function(dateText, inst) {
+				$(this).datepickfer('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+			}
+		});
+	});
+	</script>
+	<style>
+	.ui-datepicker-calendar {
+		display: none;
+	}
+	</style>
+</head>
+<body>
+	<div>
+		<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+			<div class="container topnav">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand topnav" href="index.html"><img src="./img/LOGO_NAV_TRANS_TEXT.png" /></a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a id="indice" style="display:block" href="index.html">Uplace</a>
+						</li>
+						<li>
+							<a id="logbook" style="display:none" href="LogBook.html">Log Book</a>
+						</li>
+						<li>
+							<a id="adicionar" style="display:none" href="AdicionarImóvel.html">Adicionar Imóvel</a>
+						</li>
+						<li>
+							<a id="meus" style="display:none" href="MeusImoveis.html">Os Meus Imóveis</a>
+						</li>
+						<li>
+							<a id="aprovar" style="display:none" href="PaginaGestor.html">Aprovar Imóveis</a>
+						</li>
+						<li class="dropdown head-dpdn">
+							<a id="fav" href="#" class="dropdown-toggle" data-toggle="dropdown"  aria-expanded="false"><i class="fa fa-heart" aria-hidden="true"></i> Favoritos</a>
+							<ul style="min-width:300px" class="dropdown-menu" id='tabelaFav'>
+							</ul>
+						</li>
+						<li>
+							<a id="conta" style="display:none" href="Conta.html"  >Minha Conta</a>
+						</li>
+						<li>
+							<a id="logreg" style="display:bock" href="LoginRegistar.html" >Login/Registar</a>
+						</li>
+
+
+						<li>
+							<a id="logout" onclick="sair()" href="">Logout</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container -->
+		</nav>
+	</div>
+	<!-- Compare basket -->
+	<div class="compare-basket">
+		<button class="action action--button action--compare"><i class="fa fa-check"></i><span class="action__text">Compare</span></button>
+	</div>
+	<!-- Page Content -->
+	<div class=" content-section-a">
+
+		<div class="container">
+			<h2 class="section-heading"><br></h2>
+
+			<div class="col-lg-offset-2 row">
+				<!--Universidade-->
+				<div class="col-xs-6 col-sm-3">
+
+					<a  class="btn btn-warning btn-select btn-select-light">
+						<input type="hidden" class="btn-select-input" id="RoomN" name="" value="" />
+						<span id="numero" class="btn-select-value">Universidade</span>
+						<span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
+						<ul id="numero">
+							<li style="text-align:center" id="">-----------Indiferente---------</li>
+							<li id="UA">Universidade de Aveiro</li>
+							<li id="UC">Universidade de Coimbra</li>
+							<li id="UNL">Universidade Nova de Lisboa</li>
+							<li id="UP">Universidade do Porto</li>
+						</ul>
+					</a>
+				</div>
+
+
+				<!--Numero de WCs-->
+				<div class="col-xs-6 col-sm-3">
+					<a class="btn btn-warning btn-select btn-select-light">
+						<input type="hidden" class="btn-select-input" id="BathN" name="" value="" />
+						<span class="btn-select-value">Despesas</span>
+						<span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
+						<ul id="wc">
+				<li style="text-align:center" id="">-----------Indiferente---------</li>
+							<li id="sinc">Despesas Incluídas</li>
+							<li id="naoinc">Despesas Não Incluídas</li>
+						</ul>
+					</a>
+				</div>
+				<div class="col-lg-3">
+					<div class="input-group">
+						<input style="line-height: 28px" placeholder="Check-In :" name="checkin" id="startDate" class="date-picker" />
+					</div>
+				</div>
+				<button id="procurar" type="button" class="btn btn-warning" onclick="procurar()" >Procurar</button>
+			</div>
+
+
+
+			<div class="col-lg-offset-2 row">
+
+				<div class="col-xs-6 col-sm-3">
+
+					<a class="btn btn-warning btn-select btn-select-light">
+						<input type="hidden" class="btn-select-input " id="RoomN" name="" value="" />
+						<span class="btn-select-value">Quarto</span>
+						<span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
+						<ul id="local">
+<li style="text-align:center" id="">-----------Indiferente---------</li>
+							<li id="1c">1 Cama</li>
+							<li id="2c">2 Camas</li>
+							<li id="3c">3 Camas</li>
+						</ul>
+					</a>
+				</div>
+
+
+
+				<!--Numero de WCs-->
+				<div class="col-xs-6 col-sm-3">
+					<a class="btn btn-warning btn-select btn-select-light">
+						<input type="hidden" class="btn-select-input" id="BathN" name="" value="" />
+						<span class="btn-select-value">Preço</span>
+						<span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
+						<ul id="preco">
+<li style="text-align:center" id="">-----------Indiferente---------</li>
+							<li id="p100" >0€ a 99€</li>
+							<li id="p200" >100€ a 199€</li>
+							<li id="p300" >200€ a 299€</li>
+							<li id="p400" >300€ a 399€</li>
+							<li id="p500" >400€ a 499€</li>
+						</ul>
+					</a>
+				</div>
+				<div class="col-lg-3">
+					<div class="input-group">
+						<input style="line-height: 28px" name="checkout" id="startDate" placeholder="Check-out :"class="date-picker" />
+					</div>
+				</div>
+			</div>
+
+			<!--FIM Numero de WCs-->
+		</form>
+	</div>
+</div>
+<!-- Main view -->
+<div class="view">
+	<!-- Blueprint header -->
+
+	<!-- Product grid -->
+	<section class="col-lg-11 col-md-11 col-sm-11 col-lg-offset-1 col-md-offset-1 col-xs-offset-1 grid" style="margin-top:20px;">
+		<!-- Products -->
+		<div class="  col-lg-3 col-md-3 col-xl-3 product" style="min-height: 50px" id="product1_UCsinc1cp300">
+
+			<br />
+			<br />
+
+			<div id="p1Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#p1Car" data-slide-to="0" class="active"></li>
+					<li data-target="#p1Car" data-slide-to="1"></li>
+					<li data-target="#p1Car" data-slide-to="2"></li>
+					<li data-target="#p1Car" data-slide-to="3"></li>
+					<li data-target="#p1Car" data-slide-to="4"></li>
+				</ol>
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" style="min-width:100%">
+
+					<div class="item active car">
+						<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/3cbe48638bc31f569aeb5e05bdc29730fefb1bf3b2632eff1846d3c92d65ea7e/large.jpg" >
+					</div>
+
+					<div class="item car"  >
+						<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/75a4be86716206581f7e92a39bbcaddc7a1b156dc8fd0e3926dcf9245955f7fb/large.jpg" >
+					</div>
+
+					<div class="item car">
+						<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/6d93445dc95749367a46078c50848afa13dc9a6d79d7a796b90e4abdbbfd476f/small.jpg" style="width:100%;">
+					</div>
+
+					<div class="item car">
+						<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/1a50bdcd9b4466e485e85622c314e3aafab6ec0d5c1ddd36dfda442638f4f850/large.jpg" style="width:100%;">
+					</div>
+
+					<div class="item car">
+						<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/203542e939a87e8e70eb174aa96804220c45de347de464edf8df98e6f512d73c/large.jpg" style="width:100%;">
+					</div>
+
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="left carousel-control controlCar" href="#p1Car" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control controlCar"  href="#p1Car" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+
+			<div class="col-lg-12 caption">
+
+				<h4><a href="FirstProduct_Loged.html" id="titulop1"> Muito fresco - quarto individual em Celas </a>
+				</h4>
+				<h4 style="color:#000066">250€/Mês</h4>
+				<br />
+				<p>
+					<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+					<span>&nbsp 1 Cama Individual</span>
+				</span>
+				<p>
+					<span><i class="fa fa-money" aria-hidden="true"></i></span>
+					<span>&nbsp Despesas Incluídas: Sim</span>
+				</p>
+
+				<P>
+					<span><i class="fa fa-home" aria-hidden="true"></i></span>
+					<span>&nbsp Coimbra - Rua da Esperança </span></P>
+				</div>
+
+				<br />
+
+				<div class="col-lg-12 ratings">
+					<p class="pull-right">4 reviews</p>
+					<p style="color:#e8b609">
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<br />
+					</p>
+					<p class="pull-right">
+						<input name='FirstProduct_Loged.html' onclick="addFav('p1')"  type="checkbox"  id='p1' class="css-checkbox" /><label for="p1" id="labelp1" class="css-label">Adicionar aos Favoritos</label>
+					</p>
+				</div>
+
+
+			</label>
+			<div style="display:none" class="product__info">
+
+				<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt="Muito fresco - quarto individual em Celas" />
+
+				<span class="product__year extra highlight">
+					<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com Cama Individual &nbsp &nbsp</span>
+					<span><i class="fa fa-bath"></i></span><span> &nbsp WC Privativa</span>
+				</span>
+
+				<span class="product__region extra highlight">
+					<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 10 Residentes&nbsp &nbsp</span>
+					<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp T8 &nbsp &nbsp</span>
+				</span>
+
+				<span class="product__varietal extra highlight">
+					<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Todas as Despesas Incluídas &nbsp &nbsp</span>
+				</span>
+
+				<span class="product__alcohol extra highlight">
+					<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+					<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+					<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Máquina de Lavar a Roupa &nbsp &nbsp</span>
+				</span>
+
+				<span class="product__price highlight">250€/Mês</span>
+
+				<button onclick="location.href = 'FirstProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+			</div>
+			<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+		</div>
+
+
+
+
+		<div class=" col-lg-3 col-md-3 col-xs-3 product" style="min-height: 500px" id="product2_UNLsin1cp400">
+			<br />
+			<br />
+			<div id="p2Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#p2Car" data-slide-to="0" class="active"></li>
+					<li data-target="#p2Car" data-slide-to="1"></li>
+					<li data-target="#p2Car" data-slide-to="2"></li>
+
+				</ol>
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" style="min-width:100%">
+
+					<div class="item active car" style="min-width:100%">
+						<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/55dd3ac82b82c876936a1145c854cce8cec5df4bb1a1e15e80adc0eb718a3261/large.jpg" style="min-width:100%" >
+					</div>
+
+					<div class="item car" style="min-width:100%" >
+						<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/1cd16808bd29db1b4b4470bfa1d5f17d265d19596a57ace81de90681e6128c1e/large.jpg" style="min-width:100%;">
+					</div>
+
+					<div class="item car">
+						<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/088cf96d2f7c993f9546ee7c3ace6d1bfffe2bdc25bd9e0d570d1c26695ce0b2/large.jpg" style="width:100%;">
+					</div>
+
+
+
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="left carousel-control controlCar" href="#p2Car" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control controlCar" href="#p2Car" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+
+			<div class="col-lg-12 caption">
+
+				<h4><a href="FourteenthProduct_Loged.html" id="titulop2">Quarto com cama de solteiro e varanda<br /></a>
+					</h4>
+					<h4 style="color:#000066">390/Mês</h4>
+					<br />
+					<p>
+						<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+						<span>&nbsp 1 Cama Individual</span>
+					</span>
+					<p>
+						<span><i class="fa fa-money" aria-hidden="true"></i></span>
+						<span>&nbsp Despesas Incluídas: Sim</span>
+					</p>
+
+					<P>
+						<span><i class="fa fa-home" aria-hidden="true"></i></span>
+						<span>&nbsp Lisboa - São Sebastião</span></P>
+					</div>
+
+					<br />
+
+					<div class="col-lg-12 ratings">
+						<p class="pull-right">15 reviews</p>
+						<p style="color:#e8b609">
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="glyphicon glyphicon-star"></span>
+						</p>
+						<p class="pull-right">
+							<input name='FourteenthProduct_Loged.html' onclick="addFav('p2')"  type="checkbox"  id='p2' class="css-checkbox" /><label for="p2" id="labelp2" class="css-label">Adicionar aos Favoritos</label>
+						</p>
+					</div>
+					<div style="display:none" class="product__info">
+						<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt="Quarto com cama de solteiro e varanda" />
+
+						<span class="product__year extra highlight">
+							<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com cama de solteiro e varanda &nbsp &nbsp</span>
+							<span><i class="fa fa-bath"></i></span><span> &nbsp WC Comum</span>
+						</span>
+
+						<span class="product__region extra highlight">
+							<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 2 Residentes&nbsp &nbsp</span>
+							<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp T2 &nbsp &nbsp</span>
+						</span>
+
+						<span class="product__varietal extra highlight">
+							<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Todas as Despesas Incluídas &nbsp &nbsp</span>
+						</span>
+
+						<span class="product__alcohol extra highlight">
+							<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+							<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+							<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Máquina de Lavar a Louça &nbsp &nbsp</span>
+						</span>
+
+						<span class="product__price highlight">390€/Mês</span>
+
+						<button onclick="location.href = 'FourteenthProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+					</div>
+
+					<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+				</div>
+
+
+
+				<div class=" col-lg-3 col-md-3 col-xs-3 product"  style="min-height:500px" id="product3_UPnaoinc1cp300">
+
+					<br />
+					<br />
+
+					<div id="p3Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+						<!-- Indicators -->
+						<ol class="carousel-indicators">
+							<li data-target="#p3Car" data-slide-to="0" class="active"></li>
+							<li data-target="#p3Car" data-slide-to="1"></li>
+							<li data-target="#p3Car" data-slide-to="2"></li>
+
+						</ol>
+
+						<!-- Wrapper for slides -->
+						<div class="carousel-inner" style="min-width:100%">
+
+							<div class="item active car" style="min-width:100%">
+								<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/4c6d9427198fa2a8c21d3543be11e1f665e54d44e8036f2cb0b9bb9791d1c1db/large.jpg" style="min-width:100%" >
+							</div>
+
+							<div class="item car" style="min-width:100%" >
+								<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/f2b9414c93e73bd29d5b0ebc20fd18165b47adcf0cadd80e806f9f3822f0fbae/large.jpg" style="min-width:100%;">
+							</div>
+
+							<div class="item car">
+								<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/6821b09c368ff24d77f072c8c92359025a12b926a675a1011306c37adb0277bc/large.jpg" style="width:100%;">
+							</div>
+
+
+
+						</div>
+
+						<!-- Left and right controls -->
+						<a class="left carousel-control controlCar" href="#p3Car" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="right carousel-control controlCar" href="#p3Car" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+
+					<div class="col-lg-12 caption">
+
+						<h4><a href="FifteenthProduct_Loged.html" id="titulop3">Quarto com cama de solteiro T7 quartos </a>
+						</h4>
+						<h4 style="color:#000066">280€/Mês</h4>
+						<br />
+						<p>
+							<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+							<span>&nbsp 1 Cama Individual</span>
+						</span>
+						<p>
+							<span><i class="fa fa-money" aria-hidden="true"></i></span>
+							<span>&nbsp Despesas Incluídas: Não</span>
+						</p>
+
+						<P>
+							<span><i class="fa fa-home" aria-hidden="true"></i></span>
+							<span>&nbsp Porto - Avenida dos Aliados </span></P>
+						</div>
+
+						<br />
+
+						<div class="col-lg-12 ratings">
+							<p class="pull-right">15 reviews</p>
+							<p style="color:#e8b609">
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+								<span class="glyphicon glyphicon-star"></span>
+							</p>
+							<p class="pull-right">
+								<input name='FifteenthProduct_Loged.html' onclick="addFav('p3')"  type="checkbox"  id='p3' class="css-checkbox" /><label for="p3" id="labelp3" class="css-label">Adicionar aos Favoritos</label>
+							</p>
+						</div>
+						<div style="display:none" class="product__info">
+							<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt="Quarto com cama de solteiro em apartamento com 7 quartos" />
+
+							<span class="product__year extra highlight">
+								<span><i class="fa fa-bed" aria-hidden="true"></i>&nbspQuarto com cama de solteiro em apartamento com 7 quartos &nbsp &nbsp</span>
+								<span><i class="fa fa-bath"></i></span><span> &nbsp WC Privativa</span>
+							</span>
+
+							<span class="product__region extra highlight">
+								<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 8 Residentes&nbsp &nbsp</span>
+								<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp T7 &nbsp &nbsp</span>
+							</span>
+
+							<span class="product__varietal extra highlight">
+								<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas não incluidas &nbsp &nbsp</span>
+							</span>
+
+							<span class="product__alcohol extra highlight">
+								<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+								<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+								<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Máquina de Lavar a Louça &nbsp &nbsp</span>
+							</span>
+
+							<span class="product__price highlight">280€/Mês</span>
+
+							<button onclick="location.href = 'FifteenthProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+						</div>
+
+						<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+					</div>
+
+						<!--NOVO PRODUTO 4>
+
+						<!--https://www.uniplaces.com/accommodation/coimbra/62154-->
+
+						<div class=" col-lg-3 col-md-3 col-xs-3 product" style="min-height: 500px" id="product4_UCnaoinc1cp300">
+
+							<br />
+							<br />
+
+							<div id="p4Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+								<!-- Indicators -->
+								<ol class="carousel-indicators">
+									<li data-target="#p4Car" data-slide-to="0" class="active"></li>
+									<li data-target="#p4Car" data-slide-to="1"></li>
+									<li data-target="#p4Car" data-slide-to="2"></li>
+								</ol>
+
+								<!-- Wrapper for slides -->
+								<div class="carousel-inner" style="min-width:100%">
+
+									<div class="item active car" style="min-width:100%">
+										<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/09805c54cba3ecb83d72757998066cb6879b4eda973f34f980a8e092e14260fa/large.jpg" style="min-width:100%" >
+									</div>
+
+									<div class="item car" style="min-width:100%" >
+										<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/b293153cd58e0c1bf24aa217a02d88e10e426fe95381501d1f806c74e7aac8cb/large.jpg" style="min-width:100%;">
+									</div>
+
+									<div class="item car">
+										<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/cc123f65ec44976638c75c0dc0e923d86a4378be27a5d8b204b3c8719ed06fd5/large.jpg" style="width:100%;">
+									</div>
+
+
+
+								</div>
+
+								<!-- Left and right controls -->
+								<a class="left carousel-control controlCar" href="#p4Car" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="right carousel-control controlCar" href="#p4Car" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</div>
+
+							<div class="col-lg-12 caption">
+
+								<h4><a href="FourthProduct_Loged.html" id="titulop4">Bright double bedroom close to ESEC </a>
+								</h4>
+								<h4 style="color:#000066">220€/Mês</h4>
+								<br />
+								<p>
+									<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+									<span>&nbsp 1 Cama de Casal</span>
+								</span>
+								<p>
+									<span><i class="fa fa-money" aria-hidden="true"></i></span>
+									<span>&nbsp Despesas Incluídas: Não</span>
+								</p>
+
+								<P>
+									<span><i class="fa fa-home" aria-hidden="true"></i></span>
+									<span>&nbsp Coimbra -Norton De Matos</span></P>
+								</div>
+
+								<br />
+
+								<div class="col-lg-12 ratings">
+									<p class="pull-right">5 reviews</p>
+									<p style="color:#e8b609">
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+									</p>
+									<p class="pull-right">
+										<input name='FourthProduct_Loged.html' onclick="addFav('p4')"  type="checkbox"  id='p4' class="css-checkbox" /><label for="p4" id="labelp4" class="css-label">Adicionar aos Favoritos</label>
+									</p>
+								</div>
+								<div style="display:none" class="product__info">
+									<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt=" Bright double bedroom close to ESEC" />
+
+									<span class="product__year extra highlight">
+										<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com Cama de Casal &nbsp &nbsp</span>
+										<span><i class="fa fa-bath"></i></span><span> &nbsp WC Comum</span>
+									</span>
+
+									<span class="product__region extra highlight">
+										<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 3 Residentes&nbsp &nbsp</span>
+										<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp T2 &nbsp &nbsp</span>
+									</span>
+
+									<span class="product__varietal extra highlight">
+										<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas não Incluídas &nbsp &nbsp</span>
+									</span>
+
+									<span class="product__alcohol extra highlight">
+										<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+										<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+										<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Máquina de Lavar a Roupa &nbsp &nbsp</span>
+									</span>
+
+									<span class="product__price highlight">220€/Mês</span>
+
+									<button onclick="location.href = 'FourthProduct_Loged.html" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+								</div>
+
+								<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+							</div>
+
+							<!--NOVO PRODUTO 5>
+
+							<!--https://www.uniplaces.com/pt/accommodation/porto/5156-->
+
+							<div class=" col-lg-3 product" style="min-height: 500px" id="product5_UPsinc1cp300">
+
+								<br />
+								<br />
+
+								<div id="p5Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+									<!-- Indicators -->
+									<ol class="carousel-indicators">
+										<li data-target="#p5Car" data-slide-to="0" class="active"></li>
+										<li data-target="#p5Car" data-slide-to="1"></li>
+										<li data-target="#p5Car" data-slide-to="2"></li>
+									</ol>
+
+									<!-- Wrapper for slides -->
+									<div class="carousel-inner" style="min-width:100%">
+
+										<div class="item active car" style="min-width:100%">
+											<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/a7a5d764d732f9a9c57db698f8be3f5283a0a1e70b2f966cf0c19ff7c77ae002/large.jpg" style="min-width:100%" >
+										</div>
+
+										<div class="item car" style="min-width:100%" >
+											<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/f9e353bb949092b0f5b0dd80b1d1fb45d169ed259053770a311020a14bfa9b23/large.jpg" style="min-width:100%;">
+										</div>
+
+										<div class="item car">
+											<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/a9bf9f93dce6d89cfc4de369eff5850d04cffcb59d8a13251ac9cd1b81cb681d/large.jpg" style="width:100%;">
+										</div>
+
+
+
+									</div>
+
+									<!-- Left and right controls -->
+									<a class="left carousel-control controlCar" href="#p5Car" data-slide="prev">
+										<span class="glyphicon glyphicon-chevron-left"></span>
+										<span class="sr-only">Previous</span>
+									</a>
+									<a class="right carousel-control controlCar" href="#p5Car" data-slide="next">
+										<span class="glyphicon glyphicon-chevron-right"></span>
+										<span class="sr-only">Next</span>
+									</a>
+								</div>
+
+								<div class="col-lg-12 caption">
+
+									<h4><a href="FifthProduct_Loged.html" id="titulop5">Quarto com varanda, em apartamento com 5 quartos </a>
+									</h4>
+									<h4 style="color:#000066">290€/Mês</h4>
+									<br />
+									<p>
+										<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+										<span>&nbsp 1 Cama de Solteiro</span>
+									</span>
+									<p>
+										<span><i class="fa fa-money" aria-hidden="true"></i></span>
+										<span>&nbsp Despesas Incluídas: Sim</span>
+									</p>
+
+									<P>
+										<span><i class="fa fa-home" aria-hidden="true"></i></span>
+										<span>&nbsp Porto - Rua Da Boavista </span></P>
+									</div>
+
+									<br />
+
+									<div class="col-lg-12 ratings">
+										<p class="pull-right">3 reviews</p>
+										<p style="color:#e8b609">
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+										</p>
+										<p class="pull-right">
+											<input name='FifthProduct_Loged.html' onclick="addFav('p5')"  type="checkbox"  id='p5' class="css-checkbox" /><label for="p5" id="labelp5" class="css-label">Adicionar aos Favoritos</label>
+										</p>
+									</div>
+									<div style="display:none" class="product__info">
+										<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt="Quarto com varanda, em apartamento com 5 quartos" />
+
+										<span class="product__year extra highlight">
+											<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com Cama de Solteiro &nbsp &nbsp</span>
+											<span><i class="fa fa-bath"></i></span><span> &nbsp WC Comum</span>
+										</span>
+
+										<span class="product__region extra highlight">
+											<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 5 Residentes&nbsp &nbsp</span>
+											<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp T5 &nbsp &nbsp</span>
+										</span>
+
+										<span class="product__varietal extra highlight">
+											<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas Incluídas &nbsp &nbsp</span>
+										</span>
+
+										<span class="product__alcohol extra highlight">
+											<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+											<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+											<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Wifi &nbsp &nbsp</span>
+										</span>
+
+										<span class="product__price highlight">290€/Mês</span>
+
+										<button onclick="location.href = 'FifthProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+									</div>
+
+									<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+								</div>
+
+
+								<!--NOVO PRODUTO>
+
+								<!--https://www.uniplaces.com/pt/accommodation/porto/47412-->
+								<div class=" col-lg-3 product" style="min-height: 500px" id="product6_UPnaoinc1cp500">
+
+									<br />
+									<br />
+
+									<div id="p6Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+										<!-- Indicators -->
+										<ol class="carousel-indicators">
+											<li data-target="#p6Car" data-slide-to="0" class="active"></li>
+											<li data-target="#p6Car" data-slide-to="1"></li>
+											<li data-target="#p6Car" data-slide-to="2"></li>
+										</ol>
+
+										<!-- Wrapper for slides -->
+										<div class="carousel-inner" style="min-width:100%">
+
+											<div class="item active car" style="min-width:100%">
+												<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/0573cb3a1f0e1b2e0975005bec640fbc3aa0e1d8036dfc1ee5b667ed056762d0/small.jpg" style="min-width:100%" >
+											</div>
+
+											<div class="item car" style="min-width:100%" >
+												<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/28dda5e9bff86d335e7eaa2917fdffd03a3da2008a31f255840a5978cfc3f255/small.jpg" style="min-width:100%;">
+											</div>
+
+											<div class="item car">
+												<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/fe745bba389ce6a202629a8a389e2e5e38ab511a06a5742b509c4cc60317f512/small.jpg" style="width:100%;">
+											</div>
+
+
+
+										</div>
+
+										<!-- Left and right controls -->
+										<a class="left carousel-control controlCar" href="#p6Car" data-slide="prev">
+											<span class="glyphicon glyphicon-chevron-left"></span>
+											<span class="sr-only">Previous</span>
+										</a>
+										<a class="right carousel-control controlCar" href="#p6Car" data-slide="next">
+											<span class="glyphicon glyphicon-chevron-right"></span>
+											<span class="sr-only">Next</span>
+										</a>
+									</div>
+
+									<div class="col-lg-12 caption">
+
+										<h4><a href="SixthProduct_Loged.html" id="titulop6">Quarto com casa de banho privada, em residência </a>
+										</h4>
+										<h4 style="color:#000066">400€/Mês</h4>
+										<br />
+										<p>
+											<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+											<span>&nbsp 1 Cama de Casal</span>
+										</span>
+										<p>
+											<span><i class="fa fa-money" aria-hidden="true"></i></span>
+											<span>&nbsp Despesas Incluídas: Não</span>
+										</p>
+
+										<P>
+											<span><i class="fa fa-home" aria-hidden="true"></i></span>
+											<span>&nbsp Porto - Rua Silva Cunha</span></P>
+										</div>
+
+										<br />
+
+										<div class="col-lg-12 ratings">
+											<p class="pull-right">10 reviews</p>
+											<p style="color:#e8b609">
+												<span class="glyphicon glyphicon-star"></span>
+												<span class="glyphicon glyphicon-star"></span>
+												<span class="glyphicon glyphicon-star"></span>
+												<span class="glyphicon glyphicon-star"></span>
+												<span class="glyphicon glyphicon-star"></span>
+											</p>
+											<p class="pull-right">
+												<input name='SixthProduct_Loged.html' onclick="addFav('p6')"  type="checkbox"  id='p6' class="css-checkbox" /><label for="p6" id="labelp6" class="css-label">Adicionar aos Favoritos</label>
+											</p>
+										</div>
+										<div style="display:none" class="product__info">
+											<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt="Quarto com casa de banho privada, em residência" />
+
+											<span class="product__year extra highlight">
+												<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com Cama de Casal &nbsp &nbsp</span>
+												<span><i class="fa fa-bath"></i></span><span> &nbsp WC Privada</span>
+											</span>
+
+											<span class="product__region extra highlight">
+												<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 17 Residentes&nbsp &nbsp</span>
+												<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp Residência com 8 quartos &nbsp &nbsp</span>
+											</span>
+
+											<span class="product__varietal extra highlight">
+												<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas não Incluídas &nbsp &nbsp</span>
+											</span>
+
+											<span class="product__alcohol extra highlight">
+												<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+												<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+												<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Máquina de Lavar a Roupa e de Secar &nbsp &nbsp</span>
+											</span>
+
+											<span class="product__price highlight">400€/Mês</span>
+
+											<button onclick="location.href = 'SixthProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+										</div>
+
+										<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+									</div>
+
+									<!--NOVO PRODUTO 6>
+
+									<!--https://www.uniplaces.com/pt/accommodation/porto/47404-->
+									<div class=" col-lg-3 product"  style="min-height: 500px" id="product7_UCnaoinc1cp400">
+
+										<br />
+										<br />
+
+										<div id="p7Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+											<!-- Indicators -->
+											<ol class="carousel-indicators">
+												<li data-target="#p7Car" data-slide-to="0" class="active"></li>
+												<li data-target="#p7Car" data-slide-to="1"></li>
+												<li data-target="#p7Car" data-slide-to="2"></li>
+											</ol>
+
+											<!-- Wrapper for slides -->
+											<div class="carousel-inner" style="min-width:100%">
+
+												<div class="item active car" style="min-width:100%">
+													<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/c27585cf7e4cf381b65e5a10244fe9a0ab846c63b5b2da61459699a63b00be32/large.jpg" style="min-width:100%" >
+												</div>
+
+												<div class="item car" style="min-width:100%" >
+													<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/04b03cf145b7a3ac47be03c50a40102ca3f6e658b987cb5b29e8322a5f7d6e5b/large.jpg" style="min-width:100%;">
+												</div>
+
+												<div class="item car" style="min-width:100%" >
+													<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/e5ddf5bd854df2aa7052c000d628706109a75a9518e2e950a4f05ac4587340b1/large.jpg" style="min-width:100%;">
+												</div>
+
+												<div class="item car">
+													<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/5e7ed578f510d40a02b7304cd59078fb90d50a88056d8b6e1fe28aa02e295f98/large.jpg" style="width:100%;">
+												</div>
+
+
+
+											</div>
+
+											<!-- Left and right controls -->
+											<a class="left carousel-control controlCar" href="#p7Car" data-slide="prev">
+												<span class="glyphicon glyphicon-chevron-left"></span>
+												<span class="sr-only">Previous</span>
+											</a>
+											<a class="right carousel-control controlCar" href="#p7Car" data-slide="next">
+												<span class="glyphicon glyphicon-chevron-right"></span>
+												<span class="sr-only">Next</span>
+											</a>
+										</div>
+
+										<div class="col-lg-12 caption">
+
+											<h4><a href="SeventhProduct_Loged.html" id="titulop7">Quarto com cama de casal em residência </a>
+											</h4>
+											<h4 style="color:#000066">375€/Mês</h4>
+											<br />
+											<p>
+												<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+												<span>&nbsp 1 Cama de Casal</span>
+											</span>
+											<p>
+												<span><i class="fa fa-money" aria-hidden="true"></i></span>
+												<span>&nbsp Despesas Incluídas: Não</span>
+											</p>
+
+											<P>
+												<span><i class="fa fa-home" aria-hidden="true"></i></span>
+												<span>&nbsp Coimbra - Rua Torta</span></P>
+											</div>
+
+											<br />
+
+											<div class="col-lg-12 ratings">
+												<p class="pull-right">14 reviews</p>
+												<p style="color:#e8b609">
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+												</p>
+												<p class="pull-right">
+													<input name='SeventhProduct_Loged.html'onclick="addFav('p7')"  type="checkbox"  id='p7' class="css-checkbox" /><label for="p7" id="labelp7" class="css-label">Adicionar aos Favoritos</label>
+												</p>
+											</div>
+											<div style="display:none" class="product__info">
+												<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt="Quarto com cama de casal em residência " />
+
+												<span class="product__year extra highlight">
+													<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com Cama de Casal &nbsp &nbsp</span>
+													<span><i class="fa fa-bath"></i></span><span> &nbsp WC Comum</span>
+												</span>
+
+												<span class="product__region extra highlight">
+													<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 17 Residentes&nbsp &nbsp</span>
+													<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp Residência com 8 quartos &nbsp &nbsp</span>
+												</span>
+
+												<span class="product__varietal extra highlight">
+													<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas Incluídas &nbsp &nbsp</span>
+												</span>
+
+												<span class="product__alcohol extra highlight">
+													<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp Projetor &nbsp &nbsp</span>
+													<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+													<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Roupeiro Giratório &nbsp &nbsp</span>
+												</span>
+
+												<span class="product__price highlight">375€/Mês</span>
+
+												<button onclick="location.href = 'SeventhProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+											</div>
+
+											<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+										</div>
+
+										<!--NOVO PRODUTO 7>
+
+										<!--https://www.uniplaces.com/pt/accommodation/porto/47415-->
+										<div class=" col-lg-3 product" style="min-height: 500px" id="product8_UNLsinc1cp400">
+
+											<br />
+											<br />
+
+											<div id="p8Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+												<!-- Indicators -->
+												<ol class="carousel-indicators">
+													<li data-target="#p8Car" data-slide-to="0" class="active"></li>
+													<li data-target="#p8Car" data-slide-to="1"></li>
+													<li data-target="#p8Car" data-slide-to="2"></li>
+												</ol>
+
+												<!-- Wrapper for slides -->
+												<div class="carousel-inner" style="min-width:100%">
+
+													<div class="item active car" style="min-width:100%">
+														<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/0e75b70ee58c3e655460622c8e82ef07f9535f019a2f46d1dbba1fe630f1a4b9/large.jpg" style="min-width:100%" >
+													</div>
+
+													<div class="item car" style="min-width:100%" >
+														<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/8f2e2d9f44eeaad090bb0ebc3ad2816304ee7a5ea2fa31ec2b062c936090e588/large.jpg" style="min-width:100%;">
+													</div>
+
+													<div class="item car" style="min-width:100%" >
+														<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/be9d8012ab7d56d39779b823a10034715997c5d4c7de7c69a9122c828b7a2de4/large.jpg" style="min-width:100%;">
+													</div>
+
+												</div>
+
+												<!-- Left and right controls -->
+												<a class="left carousel-control controlCar" href="#p8Car" data-slide="prev">
+													<span class="glyphicon glyphicon-chevron-left"></span>
+													<span class="sr-only">Previous</span>
+												</a>
+												<a class="right carousel-control controlCar" href="#p8Car" data-slide="next">
+													<span class="glyphicon glyphicon-chevron-right"></span>
+													<span class="sr-only">Next</span>
+												</a>
+											</div>
+
+											<div class="col-lg-12 caption">
+
+												<h4><a href="FirstProduct_Loged.html" id="titulop8">Quarto com cama de casal em residência.Bom Local </a>
+												</h4>
+												<h4 style="color:#000066">350€/Mês</h4>
+												<br />
+												<p>
+													<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+													<span>&nbsp 1 Cama de Casal</span>
+												</span>
+												<p>
+													<span><i class="fa fa-money" aria-hidden="true"></i></span>
+													<span>&nbsp Despesas Incluídas: Sim</span>
+												</p>
+
+												<P>
+													<span><i class="fa fa-home" aria-hidden="true"></i></span>
+													<span>&nbsp Lisboa - Rua do Tejo</span></P>
+												</div>
+
+												<br />
+
+												<div class="col-lg-12 ratings">
+													<p class="pull-right">6 reviews</p>
+													<p style="color:#e8b609">
+														<span class="glyphicon glyphicon-star"></span>
+														<span class="glyphicon glyphicon-star"></span>
+														<span class="glyphicon glyphicon-star"></span>
+														<span class="glyphicon glyphicon-star"></span>
+														<span class="glyphicon glyphicon-star"></span>
+													</p>
+													<p class="pull-right">
+														<input name='FirstProduct_Loged.html' onclick="addFav('p8')"  type="checkbox"  id='p8' class="css-checkbox" /><label for="p8" id="labelp8" class="css-label">Adicionar aos Favoritos</label>
+													</p>
+												</div>
+												<div style="display:none" class="product__info">
+													<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt=" Quarto com cama de casal em residência.Boa Localização" />
+
+													<span class="product__year extra highlight">
+														<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com Cama de Casal &nbsp &nbsp</span>
+														<span><i class="fa fa-bath"></i></span><span> &nbsp WC Privada</span>
+													</span>
+
+													<span class="product__region extra highlight">
+														<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 17 Residentes&nbsp &nbsp</span>
+														<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp Residência com 8 quartos &nbsp &nbsp</span>
+													</span>
+
+													<span class="product__varietal extra highlight">
+														<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas Incluídas &nbsp &nbsp</span>
+													</span>
+
+													<span class="product__alcohol extra highlight">
+														<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp Projetor &nbsp &nbsp</span>
+														<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+														<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Serviço de Limpeza Semanal &nbsp &nbsp</span>
+													</span>
+
+													<span class="product__price highlight">350€/Mês</span>
+
+													<button onclick="location.href = 'FirstProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+												</div>
+
+												<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+											</div>
+
+											<!--NOVO PRODUTO 8>
+
+											<!--https://www.uniplaces.com/pt/accommodation/porto/47398-->
+											<div class="col-lg-3 product" style="min-height: 500px" id="product9_UPsinc3cp500">
+
+												<br />
+												<br />
+
+												<div id="p9Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+													<!-- Indicators -->
+													<ol class="carousel-indicators">
+														<li data-target="#p9Car" data-slide-to="0" class="active"></li>
+														<li data-target="#p9Car" data-slide-to="1"></li>
+														<li data-target="#p9Car" data-slide-to="2"></li>
+													</ol>
+
+													<!-- Wrapper for slides -->
+													<div class="carousel-inner" style="min-width:100%">
+
+														<div class="item active car" style="min-width:100%">
+															<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/3f21b0b8272663c8b0e267f067e6c0b0b4f4d8cd64130c44a930effff246ddb3/large.jpg" style="min-width:100%" >
+														</div>
+
+														<div class="item car" style="min-width:100%" >
+															<<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/210f2619acfda643a1614397d6c3f5815b61ecb10babbe61e49c7c140efceb64/large.jpg" style="min-width:100%;">
+														</div>
+
+														<div class="item car" style="min-width:100%" >
+															<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/97dcaa4607094e3130f3b1e25cfdc5277a942ee36d90f3428c367af4cd0fa21e/large.jpg" style="min-width:100%;">
+														</div>
+
+													</div>
+
+													<!-- Left and right controls -->
+													<a class="left carousel-control controlCar" href="#p9Car" data-slide="prev">
+														<span class="glyphicon glyphicon-chevron-left"></span>
+														<span class="sr-only">Previous</span>
+													</a>
+													<a class="right carousel-control controlCar" href="#p9Car" data-slide="next">
+														<span class="glyphicon glyphicon-chevron-right"></span>
+														<span class="sr-only">Next</span>
+													</a>
+												</div>
+
+												<div class="col-lg-12 caption">
+
+													<h4><a href="EighthProduct_Loged.html" id=titulop9>Quarto com 3 camas em residência </a>
+													</h4>
+													<h4 style="color:#000066">490€/Mês</h4>
+													<br />
+													<p>
+														<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+														<span>&nbsp 3 Camas de Solteiro</span>
+													</span>
+													<p>
+														<span><i class="fa fa-money" aria-hidden="true"></i></span>
+														<span>&nbsp Despesas Incluídas: Sim</span>
+													</p>
+
+													<P>
+														<span><i class="fa fa-home" aria-hidden="true"></i></span>
+														<span>&nbsp Porto - Avenida dos Aliados</span></P>
+													</div>
+
+													<br />
+
+													<div class="col-lg-12 ratings">
+														<p class="pull-right">2 reviews</p>
+														<p style="color:#e8b609">
+															<span class="glyphicon glyphicon-star"></span>
+															<span class="glyphicon glyphicon-star"></span>
+															<span class="glyphicon glyphicon-star"></span>
+															<span class="glyphicon glyphicon-star"></span>
+															<span class="glyphicon glyphicon-star"></span>
+														</p>
+														<p class="pull-right">
+															<input name='EighthProduct_Loged.html' onclick="addFav('p9')"  type="checkbox"  id='p9' class="css-checkbox" /><label for="p9" id="labelp9" class="css-label">Adicionar aos Favoritos</label>
+														</p>
+													</div>
+													<div style="display:none" class="product__info">
+														<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt="Quarto com 3 camas em residência " />
+
+														<span class="product__year extra highlight">
+															<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com 3 camas em residência &nbsp &nbsp</span>
+															<span><i class="fa fa-bath"></i></span><span> &nbsp WC Comum</span>
+														</span>
+
+														<span class="product__region extra highlight">
+															<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 17 Residentes&nbsp &nbsp</span>
+															<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp Residência com 8 quartos &nbsp &nbsp</span>
+														</span>
+
+														<span class="product__varietal extra highlight">
+															<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas Incluídas &nbsp &nbsp</span>
+														</span>
+
+														<span class="product__alcohol extra highlight">
+															<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp 3 Roupeiros Privados &nbsp &nbsp</span>
+															<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+															<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Serviço de Limpeza Semanal &nbsp &nbsp</span>
+														</span>
+
+														<span class="product__price highlight">490€/Mês</span>
+
+														<button onclick="location.href = 'EighthProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+													</div>
+
+													<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+												</div>
+
+												<!--NOVO PRODUTO 9>
+
+												<!--https://www.uniplaces.com/pt/accommodation/lisbon/63781-->
+
+												<div class="col-lg-3 product" style="min-height: 500px" id="product10_UNLsinc1cp500">
+
+													<br />
+													<br />
+
+													<div id="p10Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+														<!-- Indicators -->
+														<ol class="carousel-indicators">
+															<li data-target="#p10Car" data-slide-to="0" class="active"></li>
+															<li data-target="#p10Car" data-slide-to="1"></li>
+															<li data-target="#p10Car" data-slide-to="2"></li>
+														</ol>
+
+														<!-- Wrapper for slides -->
+														<div class="carousel-inner" style="min-width:100%">
+
+															<div class="item active car" style="min-width:100%">
+																<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/ab19b50fd1a7148358e6a558044be2335e48ff5487037318305e04f1f3ad527a/large.jpg" style="min-width:100%" >
+															</div>
+
+															<div class="item car" style="min-width:100%" >
+																<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/c8b0c8aaad7a68fe8a1d84471db346704cada217795cfad9696c765cf43b2d48/large.jpg" style="min-width:100%;">
+															</div>
+
+															<div class="item car">
+																<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/bed8caffbcc5df1951b0ce890ed587bbc9ea3ff684c7640b6d79e004bbcedcbb/large.jpg" style="width:100%;">
+															</div>
+
+
+
+														</div>
+
+														<!-- Left and right controls -->
+														<a class="left carousel-control controlCar" href="#p10Car" data-slide="prev">
+															<span class="glyphicon glyphicon-chevron-left"></span>
+															<span class="sr-only">Previous</span>
+														</a>
+														<a class="right carousel-control controlCar" href="#p10Car" data-slide="next">
+															<span class="glyphicon glyphicon-chevron-right"></span>
+															<span class="sr-only">Next</span>
+														</a>
+													</div>
+
+													<div class="col-lg-12 caption">
+
+														<h4><a href="NinthProduct_Loged.html" id="titulop10">Quarto com cama de solteiro <br /></a><br />
+														</h4>
+														<h4 style="color:#000066">470€/Mês</h4>
+														<br />
+														<p>
+															<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+															<span>&nbsp 1 Cama de Solteiro</span>
+														</span>
+														<p>
+															<span><i class="fa fa-money" aria-hidden="true"></i></span>
+															<span>&nbsp Despesas Incluídas: Sim</span>
+														</p>
+
+														<P>
+															<span><i class="fa fa-home" aria-hidden="true"></i></span>
+															<span>&nbsp Lisboa - Avenida Crisóstomo</span></P>
+														</div>
+
+														<br />
+
+														<div class="col-lg-12 ratings">
+															<p class="pull-right">5 reviews</p>
+															<p style="color:#e8b609">
+																<span class="glyphicon glyphicon-star"></span>
+																<span class="glyphicon glyphicon-star"></span>
+																<span class="glyphicon glyphicon-star"></span>
+																<span class="glyphicon glyphicon-star"></span>
+																<span class="glyphicon glyphicon-star"></span>
+															</p>
+															<p class="pull-right">
+																<input name='NinthProduct_Loged.html' onclick="addFav('p10')"  type="checkbox"  id='p10' class="css-checkbox" /><label for="p10" id="labelp10" class="css-label">Adicionar aos Favoritos</label>
+															</p>
+														</div>
+														<div style="display:none" class="product__info">
+															<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt=" Quarto com cama de solteiro " />
+
+															<span class="product__year extra highlight">
+																<span><i class="fa fa-bed" aria-hidden="true"></i>&nbspQuarto com cama de solteiro &nbsp &nbsp</span>
+																<span><i class="fa fa-bath"></i></span><span> &nbsp WC Privada</span>
+															</span>
+
+															<span class="product__region extra highlight">
+																<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 30 Residentes&nbsp &nbsp</span>
+																<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp Residência com 25 quartos &nbsp &nbsp</span>
+															</span>
+
+															<span class="product__varietal extra highlight">
+																<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas Incluídas &nbsp &nbsp</span>
+															</span>
+
+															<span class="product__alcohol extra highlight">
+																<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+																<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+																<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Varanda  &nbsp &nbsp</span>
+															</span>
+
+															<span class="product__price highlight">470€/Mês</span>
+
+															<button onclick="location.href = 'NinthProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+														</div>
+
+														<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+													</div>
+
+													<!--NOVO PRODUTO 10>
+
+													<!--https://www.uniplaces.com/pt/accommodation/lisbon/24584-->
+
+													<div class=" col-lg-3 product" style="min-height:500px" id="product11_UCnaoinc1cp500">
+
+														<br />
+														<br />
+
+														<div id="p11Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+															<!-- Indicators -->
+															<ol class="carousel-indicators">
+																<li data-target="#p11Car" data-slide-to="0" class="active"></li>
+																<li data-target="#p11Car" data-slide-to="1"></li>
+																<li data-target="#p11Car" data-slide-to="2"></li>
+															</ol>
+
+															<!-- Wrapper for slides -->
+															<div class="carousel-inner" style="min-width:100%">
+
+																<div class="item active car" style="min-width:100%">
+																	<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/1181c663349bd749bf17a550e7e5004d351e391affdb32a51c7dc9213b3c4d28/large.jpg" style="min-width:100%" >
+																</div>
+
+																<div class="item car" style="min-width:100%" >
+																	<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/3574a1201b11a7c51ebcf98d45446d8430dffc8a276a66a9e998753f0a054999/large.jpg" style="min-width:100%;">
+																</div>
+
+																<div class="item car" style="min-width:100%" >
+																	<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/8489170ec4506d57c307596a7514258009ca5a7951393ff7b568990d2bf5704e/large.jpg" style="min-width:100%;">
+																</div>
+
+																<div class="item car">
+																	<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/80f8e4f77950c88f32fb8482deab771af83041ef71cec1ee860f6c65cebf6f44/large.jpg" style="width:100%;">
+																</div>
+
+
+
+															</div>
+
+															<!-- Left and right controls -->
+															<a class="left carousel-control controlCar" href="#p11Car" data-slide="prev">
+																<span class="glyphicon glyphicon-chevron-left"></span>
+																<span class="sr-only">Previous</span>
+															</a>
+															<a class="right carousel-control controlCar" href="#p11Car" data-slide="next">
+																<span class="glyphicon glyphicon-chevron-right"></span>
+																<span class="sr-only">Next</span>
+															</a>
+														</div>
+
+														<div class="col-lg-12 caption">
+
+															<h4><a href="TenthProduct_Loged.html" id="titulop11" >Quarto duplo maravilhoso em um apartamento de 4 quartos </a>
+															</h4>
+															<h4 style="color:#000066">410€/Mês</h4>
+															<br />
+															<p>
+																<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+																<span>&nbsp 1 Cama de Casal</span>
+															</span>
+															<p>
+																<span><i class="fa fa-money" aria-hidden="true"></i></span>
+																<span>&nbsp Despesas Incluídas: Não</span>
+															</p>
+
+															<P>
+																<span><i class="fa fa-home" aria-hidden="true"></i></span>
+																<span>&nbsp Coimbra - Rua Antonio Martins</span></P>
+															</div>
+
+															<br />
+
+															<div class="col-lg-12 ratings">
+																<p class="pull-right">2 reviews</p>
+																<p style="color:#e8b609">
+																	<span class="glyphicon glyphicon-star"></span>
+																	<span class="glyphicon glyphicon-star"></span>
+																	<span class="glyphicon glyphicon-star"></span>
+																	<span class="glyphicon glyphicon-star"></span>
+																	<span class="glyphicon glyphicon-star"></span>
+																</p>
+																<p class="pull-right">
+																	<input name='TenthProduct_Loged.html' onclick="addFav('p11')"  type="checkbox"  id='p11' class="css-checkbox" /><label for="p11" id="labelp11" class="css-label">Adicionar aos Favoritos</label>
+																</p>
+															</div>
+															<div style="display:none" class="product__info">
+																<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt=" Quarto duplo maravilhoso em um apartamento de 4 quartos" />
+
+																<span class="product__year extra highlight">
+																	<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com Cama de Casal &nbsp &nbsp</span>
+																	<span><i class="fa fa-bath"></i></span><span> &nbsp WC Comum</span>
+																</span>
+
+																<span class="product__region extra highlight">
+																	<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 4 Residentes&nbsp &nbsp</span>
+																	<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp T4 &nbsp &nbsp</span>
+																</span>
+
+																<span class="product__varietal extra highlight">
+																	<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas não Incluídas &nbsp &nbsp</span>
+																</span>
+
+																<span class="product__alcohol extra highlight">
+																	<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+																	<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+																	<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Cadeira de Massagens &nbsp &nbsp</span>
+																</span>
+
+																<span class="product__price highlight">410€/Mês</span>
+
+																<button onclick="location.href = 'TenthProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+															</div>
+
+															<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+														</div>
+
+														<!--NOVO PRODUTO 11>
+
+														<!--https://www.uniplaces.com/pt/accommodation/lisbon/18299-->
+
+														<div class=" col-lg-3 product" style="min-height: 500px" id="product12_UAsinc1cp500">
+
+															<br />
+															<br />
+
+															<div id="p12Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+																<!-- Indicators -->
+																<ol class="carousel-indicators">
+																	<li data-target="#p12Car" data-slide-to="0" class="active"></li>
+																	<li data-target="#p12Car" data-slide-to="1"></li>
+																	<li data-target="#p12Car" data-slide-to="2"></li>
+																</ol>
+
+																<!-- Wrapper for slides -->
+																<div class="carousel-inner" style="min-width:100%">
+
+																	<div class="item active car" style="min-width:100%">
+																		<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/53138c3ed8a5631ccc51ceacb7f0b27f32b69c758beedbd5b2c9e0fe297f6f1a/large.jpg" style="min-width:100%" >
+																	</div>
+
+																	<div class="item car" style="min-width:100%" >
+																		<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/43861bb6024d4c05bce2f16411d8c6dd76786d700fc6eca8b8457bf6fb84d66f/large.jpg" style="min-width:100%;">
+																	</div>
+
+																	<div class="item car">
+																		<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/80475f56d4d60338425a48c9450d3d417ed06e5825ff717af4e82911f68b445e/large.jpg" style="width:100%;">
+																	</div>
+
+
+
+																</div>
+
+																<!-- Left and right controls -->
+																<a class="left carousel-control controlCar" href="#p12Car" data-slide="prev">
+																	<span class="glyphicon glyphicon-chevron-left"></span>
+																	<span class="sr-only">Previous</span>
+																</a>
+																<a class="right carousel-control controlCar" href="#p12Car" data-slide="next">
+																	<span class="glyphicon glyphicon-chevron-right"></span>
+																	<span class="sr-only">Next</span>
+																</a>
+															</div>
+
+															<div class="col-lg-12 caption">
+
+																<h4><a href="EleventhProduct_Loged.html" id="titulop12">Quarto de solteira encantadora em Campolide </a>
+																</h4>
+																<h4 style="color:#000066">400€/Mês</h4>
+																<br />
+																<p>
+																	<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+																	<span>&nbsp 1 Cama de Solteiro</span>
+																</span>
+																<p>
+																	<span><i class="fa fa-money" aria-hidden="true"></i></span>
+																	<span>&nbsp Despesas Incluídas: Sim</span>
+																</p>
+
+																<P>
+																	<span><i class="fa fa-home" aria-hidden="true"></i></span>
+																	<span>&nbsp Aveiro - Avenida Bordalo Pinheiro </span></P>
+																</div>
+
+																<br />
+
+																<div class="col-lg-12 ratings">
+																	<p class="pull-right">1 reviews</p>
+																	<p style="color:#e8b609">
+																		<span class="glyphicon glyphicon-star"></span>
+																		<span class="glyphicon glyphicon-star"></span>
+																		<span class="glyphicon glyphicon-star"></span>
+																		<span class="glyphicon glyphicon-star"></span>
+																		<span class="glyphicon glyphicon-star"></span>
+																	</p>
+																	<p class="pull-right">
+																		<input name='EleventhProduct_Loged.html' onclick="addFav('p12')"  type="checkbox"  id='p12' class="css-checkbox" /><label for="p12" id="labelp12" class="css-label">Adicionar aos Favoritos</label>
+																	</p>
+																</div>
+																<div style="display:none" class="product__info">
+																	<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt="Quarto de solteira encantadora em Campolide " />
+
+																	<span class="product__year extra highlight">
+																		<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com Cama de Solteiro &nbsp &nbsp</span>
+																		<span><i class="fa fa-bath"></i></span><span> &nbsp WC Comum</span>
+																	</span>
+
+																	<span class="product__region extra highlight">
+																		<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 5 Residentes&nbsp &nbsp</span>
+																		<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp T3 &nbsp &nbsp</span>
+																	</span>
+
+																	<span class="product__varietal extra highlight">
+																		<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas Incluídas &nbsp &nbsp</span>
+																	</span>
+
+																	<span class="product__alcohol extra highlight">
+																		<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+																		<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+																		<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Máquina de Lavar a Roupa &nbsp &nbsp</span>
+																	</span>
+
+																	<span class="product__price highlight">400€/Mês</span>
+
+																	<button onclick="location.href = 'EleventhProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+																</div>
+
+																<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+															</div>
+
+															<!--NOVO PRODUTO 12>
+
+															<!--https://www.uniplaces.com/pt/accommodation/lisbon/146-->
+
+															<div class=" col-lg-3 product" style="min-height: 500px" id="product13_UNLsinc1cp400">
+
+																<br />
+																<br />
+
+																<div id="p13Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+																	<!-- Indicators -->
+																	<ol class="carousel-indicators">
+																		<li data-target="#p13Car" data-slide-to="0" class="active"></li>
+																		<li data-target="#p13Car" data-slide-to="1"></li>
+																		<li data-target="#p13Car" data-slide-to="2"></li>
+																	</ol>
+
+																	<!-- Wrapper for slides -->
+																	<div class="carousel-inner" style="min-width:100%">
+
+																		<div class="item active car" style="min-width:100% " >
+																			<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/3c2af21f1df3c33c5768a314c70cad17cbed85c8410a473aa2c95aad189feb07/small.jpg" style="min-width:100%" >
+																		</div>
+
+																		<div class="item car" style="min-width:100%" >
+																			<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/ab9f4f00c78b9a4e7c55f36b3284397d895890a278af93ac698156df481f245d/large.jpg" style="min-width:100%;">
+																		</div>
+
+																		<div class="item car">
+																			<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/9be2e4f22cbe51bfcc573f627c78f5d4aa7582cd1130296ec94192227e792f2c/large.jpg" style="width:100%;">
+																		</div>
+																	</div>
+
+																	<!-- Left and right controls -->
+																	<a class="left carousel-control controlCar" href="#p13Car" data-slide="prev">
+																		<span class="glyphicon glyphicon-chevron-left"></span>
+																		<span class="sr-only">Previous</span>
+																	</a>
+																	<a class="right carousel-control controlCar" href="#p13Car" data-slide="next">
+																		<span class="glyphicon glyphicon-chevron-right"></span>
+																		<span class="sr-only">Next</span>
+																	</a>
+																</div>
+
+																<div class="col-lg-12 caption">
+
+																	<h4><a href="TwelfthProduct_Loged.html" id="titulop13">Quarto com Boa Localização <br /></a><br />
+
+																	</h4>
+																	<h4 style="color:#000066">350€/Mês</h4>
+																	<br />
+																	<p>
+																		<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+																		<span>&nbsp 1 Cama de Solteiro</span>
+																	</span>
+																	<p>
+																		<span><i class="fa fa-money" aria-hidden="true"></i></span>
+																		<span>&nbsp Despesas Incluídas: Sim</span>
+																	</p>
+
+																	<P>
+																		<span><i class="fa fa-home" aria-hidden="true"></i></span>
+																		<span>&nbsp Lisboa - Av. Almirante Reis</span></P>
+																	</div>
+
+																	<br />
+
+																	<div class="col-lg-12 ratings">
+																		<p class="pull-right">4 reviews</p>
+																		<p style="color:#e8b609">
+																			<span class="glyphicon glyphicon-star"></span>
+																			<span class="glyphicon glyphicon-star"></span>
+																			<span class="glyphicon glyphicon-star"></span>
+																			<span class="glyphicon glyphicon-star"></span>
+																			<span class="glyphicon glyphicon-star"></span>
+																		</p>
+																		<p class="pull-right">
+																			<input name='TwelfthProduct_Loged.html' onclick="addFav('p13')"  type="checkbox"  id='p13' class="css-checkbox" /><label for="p13" id="labelp13" class="css-label">Adicionar aos Favoritos</label>
+																		</p>
+																	</div>
+																	<div style="display:none" class="product__info">
+																		<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt=" Quarto com Boa Localização" />
+
+																		<span class="product__year extra highlight">
+																			<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com Cama de Solteira &nbsp &nbsp</span>
+																			<span><i class="fa fa-bath"></i></span><span> &nbsp WC Comum</span>
+																		</span>
+
+																		<span class="product__region extra highlight">
+																			<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 9 Residentes&nbsp &nbsp</span>
+																			<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp T8 &nbsp &nbsp</span>
+																		</span>
+
+																		<span class="product__varietal extra highlight">
+																			<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas Incluídas &nbsp &nbsp</span>
+																		</span>
+
+																		<span class="product__alcohol extra highlight">
+																			<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+																			<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+																			<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Roupeiro Embutido &nbsp &nbsp</span>
+																		</span>
+
+																		<span class="product__price highlight">350€/Mês</span>
+
+																		<button onclick="location.href = 'TwelfthProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+																	</div>
+
+																	<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+																</div>
+
+																<!--NOVO PRODUTO 13>
+
+																<!--https://www.uniplaces.com/pt/accommodation/lisbon/1474-->
+
+																<div class=" col-lg-3 product" style="min-height: 500px" id="product14_UCnaoinc1cp500">
+
+																	<br />
+																	<br />
+
+																	<div id="p14Car" class="col-lg-12 carousel slide" data-ride="carousel" style="margin: 0 auto">
+																		<!-- Indicators -->
+																		<ol class="carousel-indicators">
+																			<li data-target="#p14Car" data-slide-to="0" class="active"></li>
+																			<li data-target="#p14Car" data-slide-to="1"></li>
+																			<li data-target="#p14Car" data-slide-to="2"></li>
+																		</ol>
+
+																		<!-- Wrapper for slides -->
+																		<div class="carousel-inner" style="min-width:100%">
+
+																			<div class="item active car" style="min-width:100%">
+																				<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/a8fac7c7c70872c22a3ab7a2def15b280cd0a1a4e456851a200d151b519940a5/large.jpg" style="min-width:100%" >
+																			</div>
+
+																			<div class="item car" style="min-width:100%" >
+																				<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/dd496b3615d6c1548b4a77b9bab64c87d65b419df8cfe4f299a8b90991e79f43/large.jpg" style="min-width:100%;">
+																			</div>
+
+																			<div class="item car">
+																				<img class="imgCar" src="https://d16teuje7e44sv.cloudfront.net/property-photos/efa990b24f10ac2aa4d46b42641f6f577eb02c4062c7a955ad92800d846a1827/large.jpg" style="width:100%;">
+																			</div>
+
+
+
+																		</div>
+
+																		<!-- Left and right controls -->
+																		<a class="left carousel-control controlCar" href="#p14Car" data-slide="prev">
+																			<span class="glyphicon glyphicon-chevron-left"></span>
+																			<span class="sr-only">Previous</span>
+																		</a>
+																		<a class="right carousel-control controlCar" href="#p14Car" data-slide="next">
+																			<span class="glyphicon glyphicon-chevron-right"></span>
+																			<span class="sr-only">Next</span>
+																		</a>
+																	</div>
+
+																	<div class="col-lg-12 caption">
+
+																		<h4><a href="ThirteenthProduct_Loged.html" id="titulop14">Quarto com cama de solteiro, perto da Universidade </a>
+																		</h4>
+																		<h4 style="color:#000066">410€/Mês</h4>
+																		<br />
+																		<p>
+																			<span><i class="fa fa-bed" aria-hidden="true"></i></span>
+																			<span>&nbsp 1 Cama de Solteiro</span>
+																		</span>
+																		<p>
+																			<span><i class="fa fa-money" aria-hidden="true"></i></span>
+																			<span>&nbsp Despesas Incluídas: Não</span>
+																		</p>
+
+																		<P>
+																			<span><i class="fa fa-home" aria-hidden="true"></i></span>
+																			<span>&nbsp Coimbra - Rua João Meneses  </span></P>
+																		</div>
+
+																		<br />
+
+																		<div class="col-lg-12 ratings">
+																			<p class="pull-right">2 reviews</p>
+																			<p style="color:#e8b609">
+																				<span class="glyphicon glyphicon-star"></span>
+																				<span class="glyphicon glyphicon-star"></span>
+																				<span class="glyphicon glyphicon-star"></span>
+																				<span class="glyphicon glyphicon-star"></span>
+																				<span class="glyphicon glyphicon-star"></span>
+																			</p>
+																			<p class="pull-right">
+																				<input name='ForteenthProduct_Loged.html' onclick="addFav('p14')"  type="checkbox"  id='p14' class="css-checkbox" /><label for="p14" id="labelp14" class="css-label">Adicionar aos Favoritos</label>
+																			</p>
+																		</div>
+																		<div style="display:none" class="product__info">
+																			<img style="color:black; font-weight:bold; font-size:18px" class="product__image"  alt=" Bright double bedroom close to ESEC" />
+
+																			<span class="product__year extra highlight">
+																				<span><i class="fa fa-bed" aria-hidden="true"></i>&nbsp Quarto com cama de solteiro &nbsp &nbsp</span>
+																				<span><i class="fa fa-bath"></i></span><span> &nbsp WC Comum</span>
+																			</span>
+
+																			<span class="product__region extra highlight">
+																				<span><i class="fa fa-users" aria-hidden="true"></i></i>&nbsp 7 Residentes&nbsp &nbsp</span>
+																				<span><i class="fa fa-home" aria-hidden="true"></i>&nbsp T6 &nbsp &nbsp</span>
+																			</span>
+
+																			<span class="product__varietal extra highlight">
+																				<span><i class="fa fa-money" aria-hidden="true"></i>&nbsp Despesas não Incluídas &nbsp &nbsp</span>
+																			</span>
+
+																			<span class="product__alcohol extra highlight">
+																				<span><i class="fa fa-television" aria-hidden="true"></i>&nbsp TV por Cabo &nbsp &nbsp</span>
+																				<span><i class="fa fa-thermometer-empty" aria-hidden="true"></i>&nbsp Aquecimento Central &nbsp &nbsp</span>
+																				<span><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp Máquina de Chocolates &nbsp &nbsp</span>
+																			</span>
+
+																			<span class="product__price highlight">410€/Mês</span>
+
+																			<button onclick="location.href = 'FirstProduct_Loged.html'" class="action action--button action--buy"><i class="fa fa-plus"></i><span class="action__text">Mais Informações</span></button>
+																		</div>
+
+																		<label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"> Adicionar ao Comparador</i><i style=" color: #FC743E" class="fa fa-times"> Remover do Comparador</i><span class="action__text action__text--invisible">Add to compare</span></label>
+																	</div>
+																	<div id="erroPesquisa" style="display:none">
+																		<h2 style="color:#e65c00">ERRO! Sem resultados de pesquisa!</h2>
+																	</div>
+
+																	<div class="modal fade" id="erroFav" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																    <div class="modal-dialog">
+																      <div class="modal-content panel-warning">
+																        <div class="modal-header panel-heading">
+																          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																          <h4 class="modal-title">ERRO</h4>
+																        </div>
+																        <div class="modal-body">
+																          Para poder adicionar um imóvel aos seus favorito tem de estar logado como utilizador "default" ou como "proprietario"
+																        </div>
+																        <div class="modal-footer">
+																          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+																          <button type="button" onclick="window.open('LoginRegistar.html','_self')"class="btn btn-success">Fazer Login</button>
+																        </div>
+																      </div><!-- /.modal-content -->
+																    </div><!-- /.modal-dialog -->
+																  </div><!-- /.modal -->
+
+
+
+																</section>
+															</div><!-- /view -->
+															<!-- product compare wrapper -->
+															<section class="compare">
+																<button class="action action--close"><i class="fa fa-remove"></i><span class="action__text action__text--invisible">Close comparison overlay</span></button>
+															</section>
+															<script src="js/classie.js"></script>
+															<script src="js/main.js"></script>
+														</body>
+														</html>
